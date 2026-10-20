@@ -1,0 +1,504 @@
+<title>9/7 Triple Double Bonus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f3f1ec;
+    --surface: #fbfaf6;
+    --ink: #171f1b;
+    --ink-soft: #3c453f;
+    --muted: #6e6a5e;
+    --line: #dbd6c9;
+    --line-strong: #c7c1b0;
+    --felt: #116b48;
+    --felt-ink: #0d5138;
+    --gold: #9a6e22;
+    --gold-ink: #7a5619;
+    --felt-tint: #e4ede8;
+    --gold-tint: #efe5d1;
+    --shadow: 0 1px 2px rgba(23, 31, 27, 0.06), 0 8px 24px -16px rgba(23, 31, 27, 0.25);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #11160f;
+      --surface: #171d16;
+      --ink: #ede9df;
+      --ink-soft: #c3beb0;
+      --muted: #938d7d;
+      --line: #2b332a;
+      --line-strong: #3a4338;
+      --felt: #3fb587;
+      --felt-ink: #6fcba3;
+      --gold: #d2a24a;
+      --gold-ink: #e3b968;
+      --felt-tint: #16261f;
+      --gold-tint: #241e12;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px -16px rgba(0, 0, 0, 0.55);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #11160f;
+    --surface: #171d16;
+    --ink: #ede9df;
+    --ink-soft: #c3beb0;
+    --muted: #938d7d;
+    --line: #2b332a;
+    --line-strong: #3a4338;
+    --felt: #3fb587;
+    --felt-ink: #6fcba3;
+    --gold: #d2a24a;
+    --gold-ink: #e3b968;
+    --felt-tint: #16261f;
+    --gold-tint: #241e12;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px -16px rgba(0, 0, 0, 0.55);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 40px 16px 64px; }
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3.1rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .dek {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 28px;
+    text-wrap: balance;
+  }
+
+  .masthead-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .masthead-meta span { white-space: nowrap; }
+
+  /* ---- stat row ---- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 40px 0 8px;
+  }
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat {
+    background: var(--surface);
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stat .num {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .stat .num.accent { color: var(--gold-ink); }
+  .stat .label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  /* ---- section headings ---- */
+  section { margin-top: 56px; }
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.005em;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .section-note {
+    font-size: 0.98rem;
+    color: var(--muted);
+    margin: 0 0 24px;
+    max-width: 58ch;
+    line-height: 1.55;
+  }
+
+  p { line-height: 1.65; font-size: 1.02rem; color: var(--ink-soft); }
+  p.lead-in { margin: 0 0 24px; max-width: 62ch; }
+
+  /* ---- paytable ---- */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 920px;
+    font-size: 0.92rem;
+  }
+  thead th {
+    text-align: left;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line-strong);
+    white-space: nowrap;
+  }
+  thead th.num, td.num { text-align: right; }
+  tbody td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+    font-family: "Source Serif 4", serif;
+    color: var(--ink);
+  }
+  tbody tr:last-of-type td { border-bottom: none; }
+  td.num, td.pay {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+  td.hand { display: flex; align-items: center; gap: 9px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .dot.core { background: var(--felt); }
+  .dot.premium { background: var(--gold); }
+  tr.total td {
+    font-weight: 600;
+    border-top: 1px solid var(--line-strong);
+    border-bottom: none;
+    padding-top: 13px;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  tr.nothing td { color: var(--muted); }
+
+  /* ---- bar chart ---- */
+  .legend {
+    display: flex;
+    gap: 22px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .legend i.core { background: var(--felt); }
+  .legend i.premium { background: var(--gold); }
+
+  .chart {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    padding: 20px 20px 22px;
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 58px;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+  }
+  @media (max-width: 560px) {
+    .bar-row { grid-template-columns: 108px 1fr 50px; gap: 8px; }
+  }
+  .bar-label {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.25;
+  }
+  .bar-track {
+    position: relative;
+    height: 15px;
+    background: var(--paper);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 3px;
+    background: var(--felt);
+  }
+  .bar-fill.premium { background: var(--gold); }
+  .bar-value {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: var(--ink);
+  }
+
+  /* ---- insight panel ---- */
+  .insight {
+    border: 1px solid var(--line-strong);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    background: var(--gold-tint);
+    padding: 26px 28px;
+  }
+  .insight p { color: var(--ink); max-width: 64ch; }
+  .insight p + p { margin-top: 14px; }
+  .insight .ratio {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 600;
+    color: var(--gold-ink);
+  }
+  .insight .kicker {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+    margin: 0 0 10px;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.74rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--felt-ink); text-decoration: none; border-bottom: 1px solid currentColor; }
+  footer a:hover { color: var(--gold-ink); }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--felt); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .bar-fill { transition: filter 0.15s ease; }
+  }
+  .bar-row:hover .bar-fill { filter: brightness(1.08); }
+</style>
+
+<div class="page">
+
+  <p class="eyebrow">Video poker return analysis — optimal strategy</p>
+  <h1>9/7 Triple Double Bonus</h1>
+  <p class="dek">The paytable advertises 99.58% back. Here is which thirteen hands actually deliver it — and how concentrated that return really is.</p>
+  <div class="masthead-meta">
+    <span>Basis: 2,598,960 starting hands, full optimal-strategy draw tree</span>
+    <span>Source: Wizard of Odds return tables</span>
+    <span>Compiled 2026-10-20</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num">99.58%</div>
+      <div class="label">Total theoretical return, optimal play</div>
+    </div>
+    <div class="stat">
+      <div class="num">1 in 3,774</div>
+      <div class="label">Frequency of royal flush + both kicker-quad hands, combined</div>
+    </div>
+    <div class="stat">
+      <div class="num accent">14.36%</div>
+      <div class="label">Share of RTP those same three hands deliver</div>
+    </div>
+    <div class="stat">
+      <div class="num accent">539×</div>
+      <div class="label">Return concentration vs. their frequency share</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>The full paytable</h2>
+    <p class="section-note">Every winning category, ranked as dealt. The dot marks which group each hand belongs to in the chart below — core hands you hit often, premium hands you wait for.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Result</th>
+            <th class="num">Frequency</th>
+            <th class="num">1 hit per</th>
+            <th class="num">Pay</th>
+            <th class="num">RTP contribution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="hand"><span class="dot premium"></span>Royal flush</td><td class="num">0.0022%</td><td class="num pay">45,455 hands</td><td class="num pay">800×</td><td class="num">1.76%</td></tr>
+          <tr><td class="hand"><span class="dot premium"></span>Straight flush</td><td class="num">0.0118%</td><td class="num pay">8,475 hands</td><td class="num pay">50×</td><td class="num">0.59%</td></tr>
+          <tr><td class="hand"><span class="dot premium"></span>Aces + 2/3/4 kicker</td><td class="num">0.0070%</td><td class="num pay">14,286 hands</td><td class="num pay">800×</td><td class="num">5.63%</td></tr>
+          <tr><td class="hand"><span class="dot premium"></span>Quad 2/3/4 + low kicker</td><td class="num">0.0173%</td><td class="num pay">5,780 hands</td><td class="num pay">400×</td><td class="num">6.90%</td></tr>
+          <tr><td class="hand"><span class="dot premium"></span>Aces, no premium kicker</td><td class="num">0.0148%</td><td class="num pay">6,757 hands</td><td class="num pay">160×</td><td class="num">2.37%</td></tr>
+          <tr><td class="hand"><span class="dot premium"></span>Quad 2/3/4, no premium kicker</td><td class="num">0.0320%</td><td class="num pay">3,125 hands</td><td class="num pay">80×</td><td class="num">2.56%</td></tr>
+          <tr><td class="hand"><span class="dot premium"></span>Quad 5–K</td><td class="num">0.1589%</td><td class="num pay">629 hands</td><td class="num pay">50×</td><td class="num">7.94%</td></tr>
+          <tr><td class="hand"><span class="dot core"></span>Full house</td><td class="num">1.035%</td><td class="num pay">96.6 hands</td><td class="num pay">9×</td><td class="num">9.32%</td></tr>
+          <tr><td class="hand"><span class="dot core"></span>Flush</td><td class="num">1.562%</td><td class="num pay">64.0 hands</td><td class="num pay">7×</td><td class="num">10.93%</td></tr>
+          <tr><td class="hand"><span class="dot core"></span>Straight</td><td class="num">1.265%</td><td class="num pay">79.0 hands</td><td class="num pay">4×</td><td class="num">5.06%</td></tr>
+          <tr><td class="hand"><span class="dot core"></span>Trips</td><td class="num">7.366%</td><td class="num pay">13.6 hands</td><td class="num pay">2×</td><td class="num">14.73%</td></tr>
+          <tr><td class="hand"><span class="dot core"></span>Two pair</td><td class="num">11.993%</td><td class="num pay">8.34 hands</td><td class="num pay">1×</td><td class="num">11.99%</td></tr>
+          <tr><td class="hand"><span class="dot core"></span>Jacks+</td><td class="num">19.786%</td><td class="num pay">5.05 hands</td><td class="num pay">1×</td><td class="num">19.79%</td></tr>
+          <tr class="nothing"><td class="hand">Nothing</td><td class="num">56.749%</td><td class="num pay">1.76 hands</td><td class="num pay">0</td><td class="num">0.00%</td></tr>
+          <tr class="total"><td>Total</td><td class="num">100.00%</td><td class="num"></td><td class="num"></td><td class="num">99.58%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where the 99.58% actually comes from</h2>
+    <p class="section-note">Same thirteen hands, sorted by how many cents of return per $1 wagered they contribute. Bar length is scaled to the largest contributor, Jacks or better.</p>
+    <div class="legend">
+      <span><i class="core"></i>Core — hit every few hands</span>
+      <span><i class="premium"></i>Premium — the rare, high-pay tail</span>
+    </div>
+    <div class="chart">
+      <div class="bar-row"><div class="bar-label">Jacks+</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">19.79%</div></div>
+      <div class="bar-row"><div class="bar-label">Trips</div><div class="bar-track"><div class="bar-fill" style="width:74.4%"></div></div><div class="bar-value">14.73%</div></div>
+      <div class="bar-row"><div class="bar-label">Two pair</div><div class="bar-track"><div class="bar-fill" style="width:60.6%"></div></div><div class="bar-value">11.99%</div></div>
+      <div class="bar-row"><div class="bar-label">Flush</div><div class="bar-track"><div class="bar-fill" style="width:55.2%"></div></div><div class="bar-value">10.93%</div></div>
+      <div class="bar-row"><div class="bar-label">Full house</div><div class="bar-track"><div class="bar-fill" style="width:47.1%"></div></div><div class="bar-value">9.32%</div></div>
+      <div class="bar-row"><div class="bar-label">Quad 5–K</div><div class="bar-track"><div class="bar-fill premium" style="width:40.1%"></div></div><div class="bar-value">7.94%</div></div>
+      <div class="bar-row"><div class="bar-label">Quad 2/3/4 + low kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:34.9%"></div></div><div class="bar-value">6.90%</div></div>
+      <div class="bar-row"><div class="bar-label">Aces + 2/3/4 kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:28.4%"></div></div><div class="bar-value">5.63%</div></div>
+      <div class="bar-row"><div class="bar-label">Straight</div><div class="bar-track"><div class="bar-fill" style="width:25.6%"></div></div><div class="bar-value">5.06%</div></div>
+      <div class="bar-row"><div class="bar-label">Quad 2/3/4, no kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:12.9%"></div></div><div class="bar-value">2.56%</div></div>
+      <div class="bar-row"><div class="bar-label">Aces, no kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:12.0%"></div></div><div class="bar-value">2.37%</div></div>
+      <div class="bar-row"><div class="bar-label">Royal flush</div><div class="bar-track"><div class="bar-fill premium" style="width:8.9%"></div></div><div class="bar-value">1.76%</div></div>
+      <div class="bar-row"><div class="bar-label">Straight flush</div><div class="bar-track"><div class="bar-fill premium" style="width:3.0%"></div></div><div class="bar-value">0.59%</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The concentration, quantified</h2>
+    <p class="lead-in">Royal flush, aces with a 2/3/4 kicker, and quad 2/3/4 with a low kicker are not where most of the return lives — the five common hands (jacks-or-better through full house) still account for roughly two-thirds of RTP. But relative to how rarely they land, those three hands are wildly overrepresented in the payback.</p>
+
+    <div class="insight">
+      <p class="kicker">The headline number</p>
+      <p>Royal flush, aces-with-kicker, and quad-234-with-kicker occur on just <strong>0.0265%</strong> of hands — about 1 in 3,774 deals — combined. Yet together they deliver <strong>14.36%</strong> of the entire 99.58% return. That's a <span class="ratio">≈539×</span> overrepresentation: a dollar of payback from this slice is clustered into events roughly 539 times more concentrated than their occurrence rate alone would predict.</p>
+      <p>Widen the lens to the full bonus family — every quad category plus straight flush and royal — and the pattern holds at smaller scale: <strong>0.244%</strong> of hands produce <strong>27.9%</strong> of RTP, a <span class="ratio">≈114×</span> concentration. This is the defining trait of the Bonus-poker lineage: expected value is carried by frequent small hands, but realized return — and bankroll variance — is carried by a rare, high-pay tail. Sessions can run far below 99.58% for thousands of hands purely from missing that tail, independent of strategy quality.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Bankroll variance at $50/hand, half-Kelly</h2>
+    <p class="section-note">Assumes a 1.42% player edge (base 99.58% return plus cashback/comp value), $50 wagered per hand, 5,000 hands/day. Volatility is pulled straight from this paytable's own payout distribution — not a generic video-poker estimate.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">$495</div>
+        <div class="label">Standard deviation per hand (this paytable's actual payout volatility)</div>
+      </div>
+      <div class="stat">
+        <div class="num">$35,016</div>
+        <div class="label">Standard deviation per day, 5,000 hands</div>
+      </div>
+      <div class="stat">
+        <div class="num accent">~97 days</div>
+        <div class="label">Play needed (≈486,500 hands) before the edge equals 1 SD of noise</div>
+      </div>
+      <div class="stat">
+        <div class="num accent">≈$690,600</div>
+        <div class="label">Bankroll implied if $50/hand is genuinely half-Kelly at this edge</div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:24px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Session</th>
+            <th class="num">Hands</th>
+            <th class="num">Expected profit</th>
+            <th class="num">Standard deviation</th>
+            <th class="num">68% range (±1σ)</th>
+            <th class="num">95% range (±2σ)</th>
+            <th class="num">P(ahead)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="hand">1 day</td><td class="num pay">5,000</td><td class="num pay">$3,550</td><td class="num pay">$35,016</td><td class="num pay">–$31,466 to $38,566</td><td class="num pay">–$66,482 to $73,582</td><td class="num pay">54.0%</td></tr>
+          <tr><td class="hand">3 days</td><td class="num pay">15,000</td><td class="num pay">$10,650</td><td class="num pay">$60,653</td><td class="num pay">–$50,003 to $71,303</td><td class="num pay">–$110,656 to $131,956</td><td class="num pay">57.0%</td></tr>
+          <tr><td class="hand">5 days</td><td class="num pay">25,000</td><td class="num pay">$17,750</td><td class="num pay">$78,314</td><td class="num pay">–$60,564 to $96,064</td><td class="num pay">–$138,878 to $174,378</td><td class="num pay">59.0%</td></tr>
+          <tr><td class="hand">7 days</td><td class="num pay">35,000</td><td class="num pay">$24,850</td><td class="num pay">$92,636</td><td class="num pay">–$67,786 to $117,486</td><td class="num pay">–$160,422 to $210,122</td><td class="num pay">60.6%</td></tr>
+          <tr><td class="hand">14 days</td><td class="num pay">70,000</td><td class="num pay">$49,700</td><td class="num pay">$131,015</td><td class="num pay">–$81,315 to $180,715</td><td class="num pay">–$212,330 to $311,730</td><td class="num pay">64.8%</td></tr>
+          <tr><td class="hand">30 days</td><td class="num pay">150,000</td><td class="num pay">$106,500</td><td class="num pay">$191,787</td><td class="num pay">–$85,287 to $298,287</td><td class="num pay">–$277,074 to $490,074</td><td class="num pay">71.1%</td></tr>
+          <tr class="total"><td>~97 days</td><td class="num">≈486,500</td><td class="num">≈$345,400</td><td class="num">≈$345,400</td><td class="num">1 SD = expected profit</td><td class="num"></td><td class="num">84.1%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight" style="margin-top:24px;">
+      <p class="kicker">What this means at the table</p>
+      <p>At $50/hand the per-hand result swings by <strong>$495 SD</strong> against a <strong>71¢ mean</strong> — a 700:1 noise-to-signal ratio on any single hand. That ratio shrinks only with <span class="ratio">√hands</span>, which is why even a full week of 5,000-hand days (35,000 hands) leaves a 95% range running from a six-figure loss to a six-figure win, and only a 60.6% chance of being ahead at all. The edge is real, but it is a <em>long-run</em> property: it takes on the order of <strong>486,500 hands — about 97 days</strong> at this pace — before expected profit catches up to a single standard deviation of variance. The same kicker-quad tail that drives the RTP concentration above is exactly what drives this: the variance is dominated by the same rare, high-pay hands, not by the common ones.</p>
+      <p>Cross-check: a $50 bet as true half-Kelly at a 1.42% edge and this payout variance implies a bankroll near <strong>$690,600</strong>. If your actual roll is smaller than that, $50/hand is more aggressive than half-Kelly and the swings above understate your real risk of ruin; if it's larger, there's room to size up without leaving the half-Kelly band.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Methodology: payout × combinatorial probability under full optimal-strategy draw analysis, C(52,5) = 2,598,960 starting hands</span>
+    <span><a href="https://wizardofodds.com/games/video-poker/tables/triple-double-bonus/" target="_blank" rel="noopener">wizardofodds.com — Triple Double Bonus return tables</a></span>
+  </footer>
+
+</div>
