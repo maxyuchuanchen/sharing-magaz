@@ -149,6 +149,31 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .empty { color: var(--muted); padding: 24px 0; text-align: center; }
 .foot { color: var(--muted); font-size: 14px; max-width: 64ch; margin: 0; }
 
+.an-body { display: grid; gap: 14px; margin-top: 12px; }
+.an-body p { margin: 0; max-width: 72ch; }
+.an-body h3 { font-family: var(--display); font-size: 18px; font-weight: 700; margin: 12px 0 0; text-wrap: balance; }
+.an-note { color: var(--muted); font-size: 14px; }
+.an-note a { color: var(--accent); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+.an-table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.an-table th, .an-table td { padding: 7px 12px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--line); }
+.an-table th { font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--bg); }
+.an-table .n { text-align: right; }
+.an-table tr:last-child td { border-bottom: 0; }
+.an-table .total td { font-weight: 600; background: var(--bg); }
+.an-table .muted-row td { color: var(--muted); }
+.bar { display: inline-block; vertical-align: middle; width: 70px; height: 8px; margin-right: 10px; border-radius: 2px; background: linear-gradient(to right, var(--good) var(--w), var(--line) var(--w)); }
+.bar.prem { background: linear-gradient(to right, var(--accent) var(--w), var(--line) var(--w)); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+.dot.core { background: var(--good); }
+.dot.prem { background: var(--accent); }
+.an-legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 13px; color: var(--muted); }
+.an-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.an-stat { display: grid; gap: 2px; align-content: start; background: var(--bg); border-radius: 8px; padding: 10px 12px; }
+.an-stat b { font-family: var(--display); font-size: 22px; font-variant-numeric: tabular-nums; }
+.an-stat b.hot { color: var(--accent); }
+.an-stat span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+
 @media (max-width: 680px) {
   .deal { grid-template-columns: 30px minmax(0, 1fr); gap: 10px 12px; }
   .num { font-size: 17px; }
@@ -184,6 +209,77 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
       <div><span>Three of a kind</span><b>2</b></div>
       <div><span>Two pair</span><b>1</b></div>
       <div><span>Jacks or better</span><b>1</b></div>
+    </div>
+  </details>
+
+  <details class="pay analysis">
+    <summary>Return and bankroll analysis</summary>
+    <div class="an-body">
+      <p class="an-note">Optimal strategy over all 2,598,960 starting hands. Hand frequencies are from the Wizard of Odds Triple Double Bonus return tables.</p>
+
+      <h3>Where the 99.58% comes from</h3>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead>
+            <tr><th>Result</th><th class="n">Frequency</th><th class="n">1 hit per</th><th class="n">Pay</th><th class="n">Share of return</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><i class="dot prem"></i>Royal flush</td><td class="n">0.0022%</td><td class="n">45,455</td><td class="n">800</td><td class="n"><span class="bar prem" style="--w:8.9%"></span>1.76%</td></tr>
+            <tr><td><i class="dot prem"></i>Straight flush</td><td class="n">0.0118%</td><td class="n">8,475</td><td class="n">50</td><td class="n"><span class="bar prem" style="--w:3.0%"></span>0.59%</td></tr>
+            <tr><td><i class="dot prem"></i>Four aces + 2, 3, 4</td><td class="n">0.0070%</td><td class="n">14,286</td><td class="n">800</td><td class="n"><span class="bar prem" style="--w:28.4%"></span>5.63%</td></tr>
+            <tr><td><i class="dot prem"></i>Four 2s–4s + A–4</td><td class="n">0.0173%</td><td class="n">5,780</td><td class="n">400</td><td class="n"><span class="bar prem" style="--w:34.9%"></span>6.90%</td></tr>
+            <tr><td><i class="dot prem"></i>Four aces</td><td class="n">0.0148%</td><td class="n">6,757</td><td class="n">160</td><td class="n"><span class="bar prem" style="--w:12.0%"></span>2.37%</td></tr>
+            <tr><td><i class="dot prem"></i>Four 2s–4s</td><td class="n">0.0320%</td><td class="n">3,125</td><td class="n">80</td><td class="n"><span class="bar prem" style="--w:12.9%"></span>2.56%</td></tr>
+            <tr><td><i class="dot prem"></i>Four 5s–Ks</td><td class="n">0.1589%</td><td class="n">629</td><td class="n">50</td><td class="n"><span class="bar prem" style="--w:40.1%"></span>7.94%</td></tr>
+            <tr><td><i class="dot core"></i>Full house</td><td class="n">1.035%</td><td class="n">96.6</td><td class="n">9</td><td class="n"><span class="bar" style="--w:47.1%"></span>9.32%</td></tr>
+            <tr><td><i class="dot core"></i>Flush</td><td class="n">1.562%</td><td class="n">64.0</td><td class="n">7</td><td class="n"><span class="bar" style="--w:55.2%"></span>10.93%</td></tr>
+            <tr><td><i class="dot core"></i>Straight</td><td class="n">1.265%</td><td class="n">79.0</td><td class="n">4</td><td class="n"><span class="bar" style="--w:25.6%"></span>5.06%</td></tr>
+            <tr><td><i class="dot core"></i>Three of a kind</td><td class="n">7.366%</td><td class="n">13.6</td><td class="n">2</td><td class="n"><span class="bar" style="--w:74.4%"></span>14.73%</td></tr>
+            <tr><td><i class="dot core"></i>Two pair</td><td class="n">11.993%</td><td class="n">8.34</td><td class="n">1</td><td class="n"><span class="bar" style="--w:60.6%"></span>11.99%</td></tr>
+            <tr><td><i class="dot core"></i>Jacks or better</td><td class="n">19.786%</td><td class="n">5.05</td><td class="n">1</td><td class="n"><span class="bar" style="--w:100%"></span>19.79%</td></tr>
+            <tr class="muted-row"><td>Nothing</td><td class="n">56.749%</td><td class="n">1.76</td><td class="n">0</td><td class="n">0.00%</td></tr>
+            <tr class="total"><td>Total</td><td class="n">100.00%</td><td></td><td></td><td class="n">99.58%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="an-legend"><span><i class="dot core"></i>Common hands, hit every few deals</span><span><i class="dot prem"></i>Rare high-pay tail</span></p>
+
+      <h3>How concentrated the return is</h3>
+      <div class="an-stats">
+        <div class="an-stat"><b>1 in 3,774</b><span>Royal flush and both kicker quads combined (0.0265% of hands)</span></div>
+        <div class="an-stat"><b class="hot">14.36%</b><span>Share of the return from those three hands, 539× their share of deals</span></div>
+        <div class="an-stat"><b>0.244%</b><span>Every quad, straight flush and royal together</span></div>
+        <div class="an-stat"><b class="hot">27.9%</b><span>Share of the return from that bonus family, 114× their share of deals</span></div>
+      </div>
+      <p>The five common hands (jacks or better through full house) still pay about two-thirds of the return. The rare tail is what decides how a session actually goes. You can run well below 99.58% for thousands of hands just by missing it, even with perfect strategy.</p>
+
+      <h3>Bankroll at $50 a hand, half-Kelly</h3>
+      <p class="an-note">Assumes a 1.42% player edge (99.58% base return plus cashback and comps), $50 per hand and 5,000 hands a day. Volatility comes from this pay table's own payout distribution.</p>
+      <div class="an-stats">
+        <div class="an-stat"><b>$495</b><span>Standard deviation per hand</span></div>
+        <div class="an-stat"><b>$35,016</b><span>Standard deviation per 5,000-hand day</span></div>
+        <div class="an-stat"><b class="hot">~97 days</b><span>About 486,500 hands before expected profit equals 1 SD</span></div>
+        <div class="an-stat"><b class="hot">≈$690,600</b><span>Bankroll at which $50 a hand is half-Kelly</span></div>
+      </div>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead>
+            <tr><th>Session</th><th class="n">Hands</th><th class="n">Expected profit</th><th class="n">SD</th><th class="n">68% range (±1 SD)</th><th class="n">95% range (±2 SD)</th><th class="n">P(ahead)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1 day</td><td class="n">5,000</td><td class="n">$3,550</td><td class="n">$35,016</td><td class="n">–$31,466 to $38,566</td><td class="n">–$66,482 to $73,582</td><td class="n">54.0%</td></tr>
+            <tr><td>3 days</td><td class="n">15,000</td><td class="n">$10,650</td><td class="n">$60,653</td><td class="n">–$50,003 to $71,303</td><td class="n">–$110,656 to $131,956</td><td class="n">57.0%</td></tr>
+            <tr><td>5 days</td><td class="n">25,000</td><td class="n">$17,750</td><td class="n">$78,314</td><td class="n">–$60,564 to $96,064</td><td class="n">–$138,878 to $174,378</td><td class="n">59.0%</td></tr>
+            <tr><td>7 days</td><td class="n">35,000</td><td class="n">$24,850</td><td class="n">$92,636</td><td class="n">–$67,786 to $117,486</td><td class="n">–$160,422 to $210,122</td><td class="n">60.6%</td></tr>
+            <tr><td>14 days</td><td class="n">70,000</td><td class="n">$49,700</td><td class="n">$131,015</td><td class="n">–$81,315 to $180,715</td><td class="n">–$212,330 to $311,730</td><td class="n">64.8%</td></tr>
+            <tr><td>30 days</td><td class="n">150,000</td><td class="n">$106,500</td><td class="n">$191,787</td><td class="n">–$85,287 to $298,287</td><td class="n">–$277,074 to $490,074</td><td class="n">71.1%</td></tr>
+            <tr class="total"><td>~97 days</td><td class="n">≈486,500</td><td class="n">≈$345,400</td><td class="n">≈$345,400</td><td class="n">1 SD = expected profit</td><td></td><td class="n">84.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Each $50 hand swings by $495 (1 SD) against an expected win of 71¢, about 700 to 1. The gap shrinks only with the square root of the number of hands. After a full week of 5,000-hand days you can still be anywhere from a six-figure loss to a six-figure win, with only a 60.6% chance of being ahead. It takes about 486,500 hands, roughly 97 days at this pace, before expected profit catches up to one standard deviation. The same rare kicker quads that concentrate the return also drive this variance.</p>
+      <p>A bankroll smaller than about $690,600 makes $50 a hand more aggressive than half-Kelly, so your real risk of ruin is higher than these ranges suggest. A larger bankroll leaves room to bet more and still stay within half-Kelly.</p>
+      <p class="an-note">Source: <a href="https://wizardofodds.com/games/video-poker/tables/triple-double-bonus/" target="_blank" rel="noopener">Wizard of Odds, Triple Double Bonus return tables</a>.</p>
     </div>
   </details>
 
