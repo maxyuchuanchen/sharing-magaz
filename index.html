@@ -308,20 +308,20 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   <details class="pay analysis">
     <summary>Optimal playing plan, and why</summary>
     <div class="an-body">
-      <p class="an-note">Same assumptions: $700,000 bankroll, 0.924% cashback, 5% rebate on each trip's net loss, $3,000 bonus every trip, and hands per trip set by the bet (10,000 at $50, 5,000 at $100).</p>
+      <p class="an-note">Assumptions: a $700,000 bankroll, 0.924% cashback, a 5% rebate on each trip's net loss, a $3,000 bonus every trip, and 10,000 hands per 2-day trip at $50 or less. Single-line machines take 5 coins, so the realistic bets are <b>$25</b> (a $5 machine) or <b>$50</b> (a $10 machine).</p>
 
       <div class="an-stats">
-        <div class="an-stat"><b class="hot">$40–50</b><span>Bet per hand. $50 is full Kelly. $40 keeps 97% of the growth with less than half the risk of losing half the bankroll.</span></div>
-        <div class="an-stat"><b class="hot">All 10,000</b><span>Hands per trip. Every hand is worth at least +$0.25 to play, ahead or behind.</span></div>
-        <div class="an-stat"><b>No stops</b><span>No stop-win and no stop-loss, unless your time is worth more than about $0.27 a hand.</span></div>
-        <div class="an-stat"><b>More trips</b><span>The $3,000 bonus is 46% of your profit and carries no risk. Another trip beats a bigger bet.</span></div>
+        <div class="an-stat"><b class="hot">$50</b><span>Bet per hand at $700k, if strategy errors and the tax hit are small. Drop to $25 below about $480k.</span></div>
+        <div class="an-stat"><b class="hot">$25</b><span>Bet per hand instead if you lose about 0.1% to errors and owe about 35% tax under the 90% loss rule.</span></div>
+        <div class="an-stat"><b>All hands</b><span>Every hand is worth at least +$0.25 at $50, whether you're ahead or behind. No stop-win and no stop-loss.</span></div>
+        <div class="an-stat"><b>More trips</b><span>The $3,000 bonus is 46% of profit at $50 and carries no risk. Another trip beats a bigger bet.</span></div>
       </div>
 
       <h3>1. Bet size: why $50 is full Kelly, not half</h3>
-      <p>Kelly sizing: bet per hand = bankroll × edge ÷ variance. The edge that goes in is the part that grows when you bet more:</p>
+      <p>Kelly sizing: bet per hand = bankroll × edge ÷ variance. The edge that goes in is only the part that grows when you bet more:</p>
       <div class="table-wrap">
         <table class="an-table">
-          <thead><tr><th>Part of the edge</th><th class="n">Per hand</th><th>Does it grow with the bet?</th></tr></thead>
+          <thead><tr><th>Part of the edge</th><th class="n">Per hand</th><th>Grows with the bet?</th></tr></thead>
           <tbody>
             <tr><td>Cashback</td><td class="n">+0.924%</td><td>Yes</td></tr>
             <tr><td>House edge</td><td class="n">–0.422%</td><td>Yes</td></tr>
@@ -331,16 +331,13 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
           </tbody>
         </table>
       </div>
-      <p><b>$700,000 × 0.711% ÷ 98.3 = $50.6 a hand.</b> Counting the rebate's cushion trims the variance to about 94.2, which gives $52.8. A simulation of exact bankroll growth peaks at about $56, and $50 gets 99.5% of that peak. If you put the whole 1.42% into the formula, it says $101, which is where "$50 is half Kelly" came from. That's wrong, because doubling the bet doesn't double the bonus.</p>
-      <p>Your hand counts reinforce this. Above $50 you play fewer hands, so wagering stays at $500,000 a trip and cashback stops growing. Going from $50 to $100 adds only about $400 of expected profit a trip, but doubles the variance.</p>
+      <p><b>$700,000 × 0.711% ÷ 98.3 = $50.6 a hand.</b> The exact bankroll-growth simulation peaks at about $55, and $50 gets more than 99% of that peak. If you put the whole 1.42% into the formula, you get $101, which is where "$50 is half Kelly" came from. That's wrong, because doubling the bet doesn't double the bonus. Above $50 your trips also get shorter (5,000 hands at $100), so the amount wagered stays at $500,000 and cashback stops growing. Going from $50 to $100 adds only about $400 of profit a trip, and the variance doubles.</p>
       <div class="table-wrap">
         <table class="an-table">
           <thead><tr><th>Strategy</th><th class="n">Hands</th><th class="n">Profit/trip</th><th class="n">Edge</th><th class="n">Growth/trip</th><th class="n">Down at 25 trips</th><th class="n">Worst 5% at 50</th><th class="n">Ever at $350k</th></tr></thead>
           <tbody>
-            <tr class="total"><td>$50, play every hand</td><td class="n">10,000</td><td class="n">$6,555</td><td class="n">1.31%</td><td class="n">0.702% (max)</td><td class="n">25%</td><td class="n">–$228k</td><td class="n">13.4%</td></tr>
-            <tr class="total"><td>$40, play every hand</td><td class="n">10,000</td><td class="n">$5,843</td><td class="n">1.46%</td><td class="n">0.683%</td><td class="n">23%</td><td class="n">–$155k</td><td class="n">5.9%</td></tr>
-            <tr><td>$35, play every hand</td><td class="n">10,000</td><td class="n">$5,486</td><td class="n">1.57%</td><td class="n">0.667%</td><td class="n">21%</td><td class="n">–$114k</td><td class="n">3.0%</td></tr>
-            <tr><td>$25, play every hand (half Kelly)</td><td class="n">10,000</td><td class="n">$4,779</td><td class="n">1.91%</td><td class="n">0.622%</td><td class="n">16%</td><td class="n">–$39k</td><td class="n">0.3%</td></tr>
+            <tr class="total"><td>$50, play every hand</td><td class="n">10,000</td><td class="n">$6,555</td><td class="n">1.31%</td><td class="n">0.702%</td><td class="n">25%</td><td class="n">–$228k</td><td class="n">13.4%</td></tr>
+            <tr class="total"><td>$25, play every hand (half Kelly)</td><td class="n">10,000</td><td class="n">$4,779</td><td class="n">1.91%</td><td class="n">0.622%</td><td class="n">16%</td><td class="n">–$39k</td><td class="n">0.3%</td></tr>
             <tr><td>$50, stop at +$30k (max 2 in a row)</td><td class="n">7,508</td><td class="n">$5,870</td><td class="n">1.56%</td><td class="n">0.663%</td><td class="n">24%</td><td class="n">–$183k</td><td class="n">9.3%</td></tr>
             <tr><td>$100, stop at +$30k (max 2 in a row)</td><td class="n">3,615</td><td class="n">$6,174</td><td class="n">1.71%</td><td class="n">0.545%</td><td class="n">30%</td><td class="n">–$362k</td><td class="n">27.5%</td></tr>
             <tr><td>$100, play every hand</td><td class="n">5,000</td><td class="n">$6,955</td><td class="n">1.39%</td><td class="n">0.537%</td><td class="n">31%</td><td class="n">–$437k</td><td class="n">33.5%</td></tr>
@@ -348,10 +345,53 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
         </table>
       </div>
       <p>A higher edge % doesn't mean faster growth. $25 and $100 both have higher edges than $50, and both grow the bankroll more slowly. Kelly weighs dollars against risk, not percentages.</p>
-      <p><b>Why full Kelly is safer here than the textbook says.</b> In the textbook setup with no bonus, full Kelly has about a 50% chance of ever halving the bankroll, and half Kelly about 12.5%. The simulation reproduces both (48.8% and 11.9%). Your $3,000 bonus adds 0.43% of growth a trip with no risk, about two-thirds of your total. So even at full Kelly, the chance of ever halving over 1,000 trips is only about 10% if you resize bets with the bankroll, or about 13% at a fixed $50.</p>
+      <p><b>Why full Kelly is safer here than the textbook says.</b> In the textbook setup with no bonus, full Kelly has about a 50% chance of ever halving the bankroll, and half Kelly about 12.5%. The simulation reproduces both (48.8% and 11.9%). Your $3,000 bonus adds 0.43% of growth a trip with no risk, about two-thirds of your total. So at $50, the chance of ever halving over 1,000 trips is only about 10% if you resize bets with the bankroll, or about 13% at a fixed $50.</p>
 
-      <h3>2. When to leave a trip: never, at these numbers</h3>
-      <p>An exact dynamic-programming solve compared leaving with playing on, at every point in a trip (hands played, current win or loss), with cashback, the rebate and the 10,000-hand limit included. Here's the average value per remaining hand of staying instead of leaving, at $50:</p>
+      <h3>2. $25 or $50: what can flip the choice</h3>
+      <p>The bet that maximizes growth with no bet-size limits ("Kelly bet") falls as anything drains the part of the edge that grows with the bet. Strategy errors do that, and so do taxes. Here's how each adjustment moves the choice at $700k, with 10,000 hands a trip:</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Adjustment</th><th class="n">Kelly bet</th><th class="n">$25 profit / growth</th><th class="n">$50 profit / growth</th><th>Better bet</th></tr></thead>
+          <tbody>
+            <tr class="total"><td>Base case</td><td class="n">$55</td><td class="n">$4,777 / 0.622%</td><td class="n">$6,553 / 0.701%</td><td>$50</td></tr>
+            <tr><td>Strategy errors costing 0.05% of each bet</td><td class="n">$52</td><td class="n">$4,655 / 0.604%</td><td class="n">$6,310 / 0.667%</td><td>$50</td></tr>
+            <tr><td>Strategy errors costing 0.10%</td><td class="n">$48</td><td class="n">$4,534 / 0.587%</td><td class="n">$6,067 / 0.632%</td><td>$50</td></tr>
+            <tr><td>Strategy errors costing 0.20%</td><td class="n">$40</td><td class="n">$4,291 / 0.553%</td><td class="n">$5,581 / 0.563%</td><td>$50, barely</td></tr>
+            <tr><td>Rebate figured after cashback</td><td class="n">$53</td><td class="n">$4,714 / 0.613%</td><td class="n">$6,429 / 0.683%</td><td>$50</td></tr>
+            <tr><td>Rebate capped at $2,500 a trip</td><td class="n">$46</td><td class="n">$4,776 / 0.622%</td><td class="n">$6,402 / 0.678%</td><td>$50</td></tr>
+            <tr><td>Rebate capped at $1,000 a trip</td><td class="n">$39</td><td class="n">$4,651 / 0.603%</td><td class="n">$5,987 / 0.614%</td><td>$50, barely</td></tr>
+            <tr><td>Bonus cut to $1,500</td><td class="n">$55</td><td class="n">$3,277 / 0.408%</td><td class="n">$5,053 / 0.488%</td><td>$50</td></tr>
+            <tr><td>Bonus dropped</td><td class="n">$55</td><td class="n">$1,777 / 0.195%</td><td class="n">$3,553 / 0.274%</td><td>$50</td></tr>
+            <tr><td>Tax at 24%, daily sessions</td><td class="n">$43</td><td class="n">$4,429 / 0.571%</td><td class="n">$5,857 / 0.598%</td><td>$50</td></tr>
+            <tr><td>Tax at 35%, one session per trip</td><td class="n">$42</td><td class="n">$4,411 / 0.568%</td><td class="n">$5,822 / 0.590%</td><td>$50</td></tr>
+            <tr><td>Tax at 35%, daily sessions</td><td class="n">$38</td><td class="n">$4,269 / 0.548%</td><td class="n">$5,538 / 0.550%</td><td>Tie</td></tr>
+            <tr class="total"><td>Errors 0.10% + tax at 35%, daily sessions</td><td class="n">$30</td><td class="n">$4,021 / 0.513%</td><td class="n">$5,042 / 0.480%</td><td>$25</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="an-rules">
+        <li><b>The bonus never changes the bet.</b> Cutting or dropping it lowers profit and growth, but the Kelly bet stays at $55. Casinos often reduce offers for winning players. Your comps (about $8,600 a trip) are far larger than the casino's expected win (about $2,100), so plan for the bonus possibly shrinking.</li>
+        <li><b>Strategy errors.</b> The drill's "EV lost" is in bets per hand, the same unit as these error rates. Drill hands are deliberately hard, though, so your real-play rate is far lower than your drill average. Real-play rate ≈ total EV lost in real play ÷ hands played. Keeping it under 0.05% keeps $50 clearly ahead.</li>
+        <li><b>Taxes (US, from 2026).</b> Only 90% of gambling losses are deductible, and only up to winnings. That makes 10% of every losing session's loss taxable, even when you broke even overall. The cost grows with the bet, so it lowers the Kelly bet. At a 35% rate with daily sessions, it costs about $1,000 a trip at $50 and about $500 at $25. If you take the standard deduction instead of itemizing, losses aren't deductible at all, and this analysis doesn't hold. Have a tax professional confirm how your sessions are counted.</li>
+      </ul>
+
+      <h3>3. Hand pays and time</h3>
+      <p>From 2026, a jackpot of $2,000 or more needs a W-2G and a hand pay, and the machine locks until an attendant pays it. At $50 that's every quad, straight flush and royal. At $25 it's only the royal and the 80×-and-up quads.</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>At 800 hands/hour, 8 minutes per hand pay</th><th class="n">$25</th><th class="n">$50</th></tr></thead>
+          <tbody>
+            <tr><td>Hand pays per 10,000 hands</td><td class="n">7.3</td><td class="n">24.4</td></tr>
+            <tr><td>Extra time per 10,000 hands</td><td class="n">+1.0 hour</td><td class="n">+3.3 hours</td></tr>
+            <tr><td>Hands that fit in the same 12.5 hours</td><td class="n">9,274</td><td class="n">7,934</td></tr>
+            <tr><td>Profit / growth with that fixed time</td><td class="n">$4,665 / 0.610%</td><td class="n">$5,915 / 0.658%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Hand pays cost $50 more time, but it still wins at $700k. If your days can stretch to fit the extra 3.3 hours, play all 10,000 hands. If the time is fixed, accept fewer hands rather than rushing and making errors.</p>
+
+      <h3>4. When to leave a trip: never, at these numbers</h3>
+      <p>An exact dynamic-programming solve compared leaving with playing on, at every point in a trip (hands played, current win or loss), with cashback, the rebate and the hand limit included. Here's the average value per remaining hand of staying instead of leaving, at $50:</p>
       <div class="table-wrap">
         <table class="an-table">
           <thead><tr><th>Hands played</th><th class="n">Down $150k</th><th class="n">Down $60k</th><th class="n">Down $20k</th><th class="n">Even</th><th class="n">Up $20k</th><th class="n">Up $60k</th><th class="n">Up $150k</th></tr></thead>
@@ -365,7 +405,7 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
       <ul class="an-rules">
         <li><b>Far ahead: still +$0.25 a hand.</b> The rebate is worth nothing there, but cashback minus the house edge still pays. Being up a lot is no reason to leave.</li>
         <li><b>Far behind: about +$0.26 a hand.</b> Further losses get 5% back, so the rebate argues against a stop-loss.</li>
-        <li><b>Near even: up to +$0.62 a hand.</b> Late in a trip near break-even, one normal swing decides whether you end with a rebate-eligible loss.</li>
+        <li><b>Near even: up to +$0.62 a hand.</b> Late in a trip near break-even, one normal swing decides whether you end with a loss the rebate pays on.</li>
         <li><b>Kelly at $700k and $50 also says never leave.</b> The exact log-growth solve has no stop-win or stop-loss anywhere in the trip.</li>
       </ul>
       <p>If your time has a cost per hand, leave once the value of staying drops below it. Here are the thresholds that result (stop-win / stop-loss):</p>
@@ -380,24 +420,31 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
           </tbody>
         </table>
       </div>
-      <p>The stop-loss always sits wider than the stop-win, because of the rebate. Both shrink as the trip goes on. A flat +$30k stop-win matches a time cost of about $0.33 a hand, but on its own it's incomplete: that time cost also calls for a stop-loss near –$40k, and both limits should tighten late in the trip. Without a time cost, betting $40 and playing every hand gets the same profit as $50 with the stop ($5,843 vs. $5,870 a trip), with faster growth (0.683% vs. 0.663%) and less risk (5.9% vs. 9.3% chance of halving).</p>
+      <p>The stop-loss always sits wider than the stop-win, because of the rebate. Both shrink as the trip goes on. A flat +$30k stop-win matches a time cost of about $0.33 a hand, but on its own it's incomplete: that time cost also calls for a stop-loss near –$40k, and both limits should tighten late in the trip.</p>
 
-      <h3>3. Adjusting as the bankroll changes</h3>
+      <h3>5. Adjusting as the bankroll changes</h3>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>$50 grows faster than $25 above…</th><th class="n">Play all 10,000 hands</th><th class="n">Fixed 12.5 hours</th></tr></thead>
+          <tbody>
+            <tr><td>Base case</td><td class="n">≈ $480k</td><td class="n">≈ $510k</td></tr>
+            <tr><td>Errors 0.10% + tax at 35%, daily sessions</td><td class="n">≈ $870k</td><td class="n">≈ $990k</td></tr>
+          </tbody>
+        </table>
+      </div>
       <ul class="an-rules">
-        <li><b>The bankroll drops:</b> cut the bet in proportion. Full Kelly is about bankroll ÷ 14,000 (about $36 at $500k). For the $40-style sizing, use about bankroll ÷ 17,500.</li>
-        <li><b>The bankroll grows and you can still play 10,000 hands:</b> Kelly grows with it, to about $75 at $1M.</li>
-        <li><b>A bigger bet would mean fewer hands:</b> stay at $50. Extra bankroll buys safety, not growth, until about $2.9M.</li>
-        <li><b>$100 × 5,000 hands</b> is about 1.7× Kelly at $700k. If you play it, the exact solve gives stops of about +$55k / –$76k at the start, tightening to +$20k / –$62k after 4,000 hands. It still grows the bankroll more slowly than $50 played out.</li>
+        <li><b>The bankroll falls below the switch point:</b> move to the $5 machine at $25. Switching early costs little ($25 keeps about 89% of the growth), and switching late risks deep drawdowns.</li>
+        <li><b>The bankroll grows:</b> stay at $50. A $125 bet ($25 machine) wouldn't fit 10,000 hands, and with wagering capped at $500k a trip, extra bankroll buys safety, not growth, until about $2.9M.</li>
+        <li><b>$100 × 5,000 hands</b> is about 1.7× Kelly at $700k. If you play it anyway, the exact solve gives stops of about +$55k / –$76k at the start, tightening to +$20k / –$62k after 4,000 hands. It still grows the bankroll more slowly than $50 played out.</li>
       </ul>
 
-      <h3>4. Check before relying on this</h3>
+      <h3>6. Still to confirm with the casino</h3>
       <ul class="an-rules">
-        <li><b>The rebate base:</b> if the rebate is figured after cashback, the edge drops about 0.025 points. A cap on the rebate cuts into it more, because most of its value comes from big losing trips.</li>
-        <li><b>The bonus terms:</b> the $3,000 is 46% of your profit. Confirm the play it requires, and that it continues for a player playing big trips.</li>
-        <li><b>Taxes (US):</b> starting in 2026, deductible gambling losses are limited to 90% of losses. Depending on how sessions are counted, that could cost several hundred dollars a trip. Check with a tax professional.</li>
-        <li><b>Hand pays:</b> at $50, every quad or better pays at least $2,500, about 24 tax-form hand pays per 10,000 hands. That downtime cuts how many hands fit into 2 days.</li>
-        <li><b>Hold strategy:</b> perfect strategy is worth only about $8 a trip more than basic strategy. The costly errors are TDB's kicker holds and pat-hand vs. low-trips decisions. Practice those in the drill below.</li>
+        <li><b>Rebate terms:</b> whether it's figured before or after cashback, any cap or minimum loss, per trip or per day, and any play-through on the free play. The table above shows what each one does.</li>
+        <li><b>The bonus:</b> what play it requires, and whether the offer survives a run of winning trips.</li>
+        <li><b>Hold strategy:</b> perfect strategy is worth only about $8 a trip more than basic strategy at $50. The expensive errors are TDB's kicker holds and pat-hand vs. low-trips decisions. Practice those in the drill below.</li>
       </ul>
+      <p class="an-note">Sources: <a href="https://sbcamericas.com/2025/12/17/irs-slot-tax-threshold-increase/" target="_blank" rel="noopener">2026 W-2G threshold of $2,000</a>. <a href="https://taxnews.ey.com/news/2026-1065-treasury-proposes-regulations-aligning-information-reporting-thresholds-and-wagering-loss-rules-with-recent-statutory-changes" target="_blank" rel="noopener">90% wagering-loss limit</a>. The tax rows assume losing-session losses are the only extra taxable income. They model the cost of the 90% rule only, not tax on your actual profit. Simulations use 1,000,000 trips per case.</p>
     </div>
   </details>
 
