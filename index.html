@@ -173,6 +173,9 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .an-stat b { font-family: var(--display); font-size: 22px; font-variant-numeric: tabular-nums; }
 .an-stat b.hot { color: var(--accent); }
 .an-stat span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+.analysis + .analysis { margin-top: -8px; }
+.an-rules { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 72ch; }
+.an-rules b { font-weight: 600; }
 
 @media (max-width: 680px) {
   .deal { grid-template-columns: 30px minmax(0, 1fr); gap: 10px 12px; }
@@ -215,7 +218,7 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   <details class="pay analysis">
     <summary>Return and bankroll analysis</summary>
     <div class="an-body">
-      <p class="an-note">Optimal strategy over all 2,598,960 starting hands. Hand frequencies are from the Wizard of Odds Triple Double Bonus return tables.</p>
+      <p class="an-note">Perfect strategy over all 2,598,960 starting hands. Hand frequencies come from the Wizard of Odds Triple Double Bonus return tables. Bankroll figures assume $50 a hand, 10,000 hands per 2-day trip, 0.924% cashback, a 5% rebate on each trip's net loss (free play counted at face value), a $3,000 show-up bonus per trip and a $700,000 bankroll.</p>
 
       <h3>Where the 99.58% comes from</h3>
       <div class="table-wrap">
@@ -246,45 +249,160 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 
       <h3>How concentrated the return is</h3>
       <div class="an-stats">
-        <div class="an-stat"><b>1 in 3,774</b><span>Royal flush and both kicker quads combined (0.0265% of hands)</span></div>
-        <div class="an-stat"><b class="hot">14.36%</b><span>Share of the return from those three hands, 539× their share of deals</span></div>
+        <div class="an-stat"><b>1 in 3,774</b><span>How often a royal flush or either kicker quad comes up (0.0265% of hands)</span></div>
+        <div class="an-stat"><b class="hot">14.36%</b><span>Share of the return those three hands pay, 539× their share of deals</span></div>
         <div class="an-stat"><b>0.244%</b><span>Every quad, straight flush and royal together</span></div>
-        <div class="an-stat"><b class="hot">27.9%</b><span>Share of the return from that bonus family, 114× their share of deals</span></div>
+        <div class="an-stat"><b class="hot">27.9%</b><span>Share of the return that bonus family pays, 114× their share of deals</span></div>
       </div>
-      <p>The five common hands (jacks or better through full house) still pay about two-thirds of the return. The rare tail is what decides how a session actually goes. You can run well below 99.58% for thousands of hands just by missing it, even with perfect strategy.</p>
+      <p>The five common hands (jacks or better through full house) pay about two-thirds of the return. The rare tail decides how a trip actually goes.</p>
 
-      <h3>Bankroll at $50 a hand, half-Kelly</h3>
-      <p class="an-note">Assumes a 1.42% player edge (99.58% base return plus cashback and comps), $50 per hand and 5,000 hands a day. Volatility comes from this pay table's own payout distribution.</p>
-      <div class="an-stats">
-        <div class="an-stat"><b>$495</b><span>Standard deviation per hand</span></div>
-        <div class="an-stat"><b>$35,016</b><span>Standard deviation per 5,000-hand day</span></div>
-        <div class="an-stat"><b class="hot">~97 days</b><span>About 486,500 hands before expected profit equals 1 SD</span></div>
-        <div class="an-stat"><b class="hot">≈$690,600</b><span>Bankroll at which $50 a hand is half-Kelly</span></div>
-      </div>
+      <h3>How volatile 9/7 TDB is</h3>
       <div class="table-wrap">
         <table class="an-table">
-          <thead>
-            <tr><th>Session</th><th class="n">Hands</th><th class="n">Expected profit</th><th class="n">SD</th><th class="n">68% range (±1 SD)</th><th class="n">95% range (±2 SD)</th><th class="n">P(ahead)</th></tr>
-          </thead>
+          <thead><tr><th>Game</th><th class="n">Return</th><th class="n">SD per hand (bets)</th><th class="n">Variance vs. Jacks or Better</th></tr></thead>
           <tbody>
-            <tr><td>1 day</td><td class="n">5,000</td><td class="n">$3,550</td><td class="n">$35,016</td><td class="n">–$31,466 to $38,566</td><td class="n">–$66,482 to $73,582</td><td class="n">54.0%</td></tr>
-            <tr><td>3 days</td><td class="n">15,000</td><td class="n">$10,650</td><td class="n">$60,653</td><td class="n">–$50,003 to $71,303</td><td class="n">–$110,656 to $131,956</td><td class="n">57.0%</td></tr>
-            <tr><td>5 days</td><td class="n">25,000</td><td class="n">$17,750</td><td class="n">$78,314</td><td class="n">–$60,564 to $96,064</td><td class="n">–$138,878 to $174,378</td><td class="n">59.0%</td></tr>
-            <tr><td>7 days</td><td class="n">35,000</td><td class="n">$24,850</td><td class="n">$92,636</td><td class="n">–$67,786 to $117,486</td><td class="n">–$160,422 to $210,122</td><td class="n">60.6%</td></tr>
-            <tr><td>14 days</td><td class="n">70,000</td><td class="n">$49,700</td><td class="n">$131,015</td><td class="n">–$81,315 to $180,715</td><td class="n">–$212,330 to $311,730</td><td class="n">64.8%</td></tr>
-            <tr><td>30 days</td><td class="n">150,000</td><td class="n">$106,500</td><td class="n">$191,787</td><td class="n">–$85,287 to $298,287</td><td class="n">–$277,074 to $490,074</td><td class="n">71.1%</td></tr>
-            <tr class="total"><td>~97 days</td><td class="n">≈486,500</td><td class="n">≈$345,400</td><td class="n">≈$345,400</td><td class="n">1 SD = expected profit</td><td></td><td class="n">84.1%</td></tr>
+            <tr><td>9/6 Jacks or Better</td><td class="n">99.54%</td><td class="n">4.42</td><td class="n">1.0×</td></tr>
+            <tr><td>8/5 Bonus Poker</td><td class="n">99.17%</td><td class="n">4.57</td><td class="n">1.1×</td></tr>
+            <tr><td>10/7 Double Bonus</td><td class="n">100.17%</td><td class="n">5.32</td><td class="n">1.5×</td></tr>
+            <tr><td>9/6 Double Double Bonus</td><td class="n">98.98%</td><td class="n">6.51</td><td class="n">2.2×</td></tr>
+            <tr class="total"><td>9/7 Triple Double Bonus</td><td class="n">99.58%</td><td class="n">9.91</td><td class="n">5.0×</td></tr>
           </tbody>
         </table>
       </div>
-      <p>Each $50 hand swings by $495 (1 SD) against an expected win of 71¢, about 700 to 1. The gap shrinks only with the square root of the number of hands. After a full week of 5,000-hand days you can still be anywhere from a six-figure loss to a six-figure win, with only a 60.6% chance of being ahead. It takes about 486,500 hands, roughly 97 days at this pace, before expected profit catches up to one standard deviation. The same rare kicker quads that concentrate the return also drive this variance.</p>
-      <p>A bankroll smaller than about $690,600 makes $50 a hand more aggressive than half-Kelly, so your real risk of ruin is higher than these ranges suggest. A larger bankroll leaves room to bet more and still stay within half-Kelly.</p>
-      <p class="an-note">Source: <a href="https://wizardofodds.com/games/video-poker/tables/triple-double-bonus/" target="_blank" rel="noopener">Wizard of Odds, Triple Double Bonus return tables</a>.</p>
+      <p>At $50 a hand, one hand swings by $496 (1 SD), and one 10,000-hand trip by about $48,500. Expected profit is about $6,550 a trip, so it takes about 54 trips before it equals one standard deviation of noise.</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Royals and kicker quads hit in a trip</th><th class="n">Share of trips</th><th class="n">Average trip result</th><th class="n">Chance the trip loses</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td class="n">7%</td><td class="n">–$62,300</td><td class="n">100%</td></tr>
+            <tr><td>1</td><td class="n">19%</td><td class="n">–$36,600</td><td class="n">97%</td></tr>
+            <tr><td>2</td><td class="n">25%</td><td class="n">–$10,900</td><td class="n">71%</td></tr>
+            <tr><td>3</td><td class="n">22%</td><td class="n">+$15,200</td><td class="n">27%</td></tr>
+            <tr><td>4</td><td class="n">15%</td><td class="n">+$42,100</td><td class="n">4%</td></tr>
+            <tr><td>5 or more</td><td class="n">13%</td><td class="n">+$69,000 to +$109,000</td><td class="n">~0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The edge, per trip</h3>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>$50 a hand</th><th class="n">Play all 10,000 hands</th><th class="n">Stop at +$30k</th></tr></thead>
+          <tbody>
+            <tr><td>Average hands played</td><td class="n">10,000</td><td class="n">7,172</td></tr>
+            <tr><td>Amount wagered</td><td class="n">$500,000</td><td class="n">$358,609</td></tr>
+            <tr><td>Game (–0.422% house edge)</td><td class="n">–$2,111</td><td class="n">–$1,514</td></tr>
+            <tr><td>Cashback (0.924%)</td><td class="n">+$4,620</td><td class="n">+$3,314</td></tr>
+            <tr><td>Show-up bonus</td><td class="n">+$3,000</td><td class="n">+$3,000</td></tr>
+            <tr><td>5% rebate on the trip's net loss</td><td class="n">+$1,045</td><td class="n">+$985</td></tr>
+            <tr class="total"><td>Expected profit per trip</td><td class="n">$6,554</td><td class="n">$5,785</td></tr>
+            <tr class="total"><td>Edge (profit ÷ amount wagered)</td><td class="n">1.311%</td><td class="n">1.613%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The rebate is worth far more than 5% of the average loss (about $106), because it pays only on losing trips, and those losses are large. The stop-win raises the edge % but lowers profit by about $770 a trip, because the fixed $3,000 bonus is spread over less wagering. With the rule that you can't stop on more than two trips in a row, the long-run edge with the stop is 1.56% ($5,876 a trip). None of these reach the 1.42% assumed earlier for playing every hand.</p>
+      <p class="an-note">Sources: <a href="https://wizardofodds.com/games/video-poker/tables/triple-double-bonus/" target="_blank" rel="noopener">Wizard of Odds return tables</a>. Trip, rebate and bankroll figures come from simulations of 200,000 to 3,000,000 trips. The game and cashback lines are exact.</p>
+    </div>
+  </details>
+
+  <details class="pay analysis">
+    <summary>Optimal playing plan, and why</summary>
+    <div class="an-body">
+      <p class="an-note">Same assumptions: $700,000 bankroll, 0.924% cashback, 5% rebate on each trip's net loss, $3,000 bonus every trip, and hands per trip set by the bet (10,000 at $50, 5,000 at $100).</p>
+
+      <div class="an-stats">
+        <div class="an-stat"><b class="hot">$40–50</b><span>Bet per hand. $50 is full Kelly. $40 keeps 97% of the growth with less than half the risk of losing half the bankroll.</span></div>
+        <div class="an-stat"><b class="hot">All 10,000</b><span>Hands per trip. Every hand is worth at least +$0.25 to play, ahead or behind.</span></div>
+        <div class="an-stat"><b>No stops</b><span>No stop-win and no stop-loss, unless your time is worth more than about $0.27 a hand.</span></div>
+        <div class="an-stat"><b>More trips</b><span>The $3,000 bonus is 46% of your profit and carries no risk. Another trip beats a bigger bet.</span></div>
+      </div>
+
+      <h3>1. Bet size: why $50 is full Kelly, not half</h3>
+      <p>Kelly sizing: bet per hand = bankroll × edge ÷ variance. The edge that goes in is the part that grows when you bet more:</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Part of the edge</th><th class="n">Per hand</th><th>Does it grow with the bet?</th></tr></thead>
+          <tbody>
+            <tr><td>Cashback</td><td class="n">+0.924%</td><td>Yes</td></tr>
+            <tr><td>House edge</td><td class="n">–0.422%</td><td>Yes</td></tr>
+            <tr><td>5% loss rebate</td><td class="n">+0.209%</td><td>Yes</td></tr>
+            <tr class="total"><td>Edge for Kelly</td><td class="n">+0.711%</td><td></td></tr>
+            <tr class="muted-row"><td>$3,000 bonus</td><td class="n">0.60% at $50</td><td>No. It's $3,000 at any bet size.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><b>$700,000 × 0.711% ÷ 98.3 = $50.6 a hand.</b> Counting the rebate's cushion trims the variance to about 94.2, which gives $52.8. A simulation of exact bankroll growth peaks at about $56, and $50 gets 99.5% of that peak. If you put the whole 1.42% into the formula, it says $101, which is where "$50 is half Kelly" came from. That's wrong, because doubling the bet doesn't double the bonus.</p>
+      <p>Your hand counts reinforce this. Above $50 you play fewer hands, so wagering stays at $500,000 a trip and cashback stops growing. Going from $50 to $100 adds only about $400 of expected profit a trip, but doubles the variance.</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Strategy</th><th class="n">Hands</th><th class="n">Profit/trip</th><th class="n">Edge</th><th class="n">Growth/trip</th><th class="n">Down at 25 trips</th><th class="n">Worst 5% at 50</th><th class="n">Ever at $350k</th></tr></thead>
+          <tbody>
+            <tr class="total"><td>$50, play every hand</td><td class="n">10,000</td><td class="n">$6,555</td><td class="n">1.31%</td><td class="n">0.702% (max)</td><td class="n">25%</td><td class="n">–$228k</td><td class="n">13.4%</td></tr>
+            <tr class="total"><td>$40, play every hand</td><td class="n">10,000</td><td class="n">$5,843</td><td class="n">1.46%</td><td class="n">0.683%</td><td class="n">23%</td><td class="n">–$155k</td><td class="n">5.9%</td></tr>
+            <tr><td>$35, play every hand</td><td class="n">10,000</td><td class="n">$5,486</td><td class="n">1.57%</td><td class="n">0.667%</td><td class="n">21%</td><td class="n">–$114k</td><td class="n">3.0%</td></tr>
+            <tr><td>$25, play every hand (half Kelly)</td><td class="n">10,000</td><td class="n">$4,779</td><td class="n">1.91%</td><td class="n">0.622%</td><td class="n">16%</td><td class="n">–$39k</td><td class="n">0.3%</td></tr>
+            <tr><td>$50, stop at +$30k (max 2 in a row)</td><td class="n">7,508</td><td class="n">$5,870</td><td class="n">1.56%</td><td class="n">0.663%</td><td class="n">24%</td><td class="n">–$183k</td><td class="n">9.3%</td></tr>
+            <tr><td>$100, stop at +$30k (max 2 in a row)</td><td class="n">3,615</td><td class="n">$6,174</td><td class="n">1.71%</td><td class="n">0.545%</td><td class="n">30%</td><td class="n">–$362k</td><td class="n">27.5%</td></tr>
+            <tr><td>$100, play every hand</td><td class="n">5,000</td><td class="n">$6,955</td><td class="n">1.39%</td><td class="n">0.537%</td><td class="n">31%</td><td class="n">–$437k</td><td class="n">33.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A higher edge % doesn't mean faster growth. $25 and $100 both have higher edges than $50, and both grow the bankroll more slowly. Kelly weighs dollars against risk, not percentages.</p>
+      <p><b>Why full Kelly is safer here than the textbook says.</b> In the textbook setup with no bonus, full Kelly has about a 50% chance of ever halving the bankroll, and half Kelly about 12.5%. The simulation reproduces both (48.8% and 11.9%). Your $3,000 bonus adds 0.43% of growth a trip with no risk, about two-thirds of your total. So even at full Kelly, the chance of ever halving is only about 6% if you resize bets with the bankroll, or about 13% at a fixed $50.</p>
+
+      <h3>2. When to leave a trip: never, at these numbers</h3>
+      <p>An exact dynamic-programming solve compared leaving with playing on, at every point in a trip (hands played, current win or loss), with cashback, the rebate and the 10,000-hand limit included. Here's the average value per remaining hand of staying instead of leaving, at $50:</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Hands played</th><th class="n">Down $150k</th><th class="n">Down $60k</th><th class="n">Down $20k</th><th class="n">Even</th><th class="n">Up $20k</th><th class="n">Up $60k</th><th class="n">Up $150k</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td class="n">$0.27</td><td class="n">$0.28</td><td class="n">$0.32</td><td class="n">$0.36</td><td class="n">$0.31</td><td class="n">$0.26</td><td class="n">$0.25</td></tr>
+            <tr><td>6,000</td><td class="n">$0.26</td><td class="n">$0.27</td><td class="n">$0.33</td><td class="n">$0.41</td><td class="n">$0.30</td><td class="n">$0.25</td><td class="n">$0.25</td></tr>
+            <tr><td>9,000</td><td class="n">$0.26</td><td class="n">$0.27</td><td class="n">$0.35</td><td class="n">$0.55</td><td class="n">$0.25</td><td class="n">$0.25</td><td class="n">$0.25</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="an-rules">
+        <li><b>Far ahead: still +$0.25 a hand.</b> The rebate is worth nothing there, but cashback minus the house edge still pays. Being up a lot is no reason to leave.</li>
+        <li><b>Far behind: about +$0.26 a hand.</b> Further losses get 5% back, so the rebate argues against a stop-loss.</li>
+        <li><b>Near even: up to +$0.62 a hand.</b> Late in a trip near break-even, one normal swing decides whether you end with a rebate-eligible loss.</li>
+        <li><b>Kelly at $700k and $50 also says never leave.</b> The exact log-growth solve has no stop-win or stop-loss anywhere in the trip.</li>
+      </ul>
+      <p>If your time has a cost per hand, leave once the value of staying drops below it. Here are the thresholds that result (stop-win / stop-loss):</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Time cost per hand</th><th class="n">At start</th><th class="n">After 4,000</th><th class="n">After 8,000</th><th class="n">After 9,500</th></tr></thead>
+          <tbody>
+            <tr><td>Up to $0.25</td><td class="n">never</td><td class="n">never</td><td class="n">never</td><td class="n">never</td></tr>
+            <tr><td>$0.27</td><td class="n">+$63k / –$112k</td><td class="n">+$47k / –$97k</td><td class="n">+$22k / –$72k</td><td class="n">+$8k / –$53k</td></tr>
+            <tr><td>$0.30 (≈$210/hour)</td><td class="n">+$43k / –$62k</td><td class="n">+$35k / –$56k</td><td class="n">+$18k / –$45k</td><td class="n">+$7k / –$35k</td></tr>
+            <tr><td>$0.35</td><td class="n">+$23k / –$33k</td><td class="n">+$21k / –$32k</td><td class="n">+$14k / –$29k</td><td class="n">+$6k / –$25k</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The stop-loss always sits wider than the stop-win, because of the rebate. Both shrink as the trip goes on. A flat +$30k stop-win matches a time cost of about $0.33 a hand, but on its own it's incomplete: that time cost also calls for a stop-loss near –$40k, and both limits should tighten late in the trip. Without a time cost, betting $40 and playing every hand gets the same profit as $50 with the stop ($5,843 vs. $5,870 a trip), with faster growth (0.683% vs. 0.663%) and less risk (5.9% vs. 9.3% chance of halving).</p>
+
+      <h3>3. Adjusting as the bankroll changes</h3>
+      <ul class="an-rules">
+        <li><b>The bankroll drops:</b> cut the bet in proportion. Full Kelly is about bankroll ÷ 14,000 (about $36 at $500k). For the $40-style sizing, use about bankroll ÷ 17,500.</li>
+        <li><b>The bankroll grows and you can still play 10,000 hands:</b> Kelly grows with it, to about $75 at $1M.</li>
+        <li><b>A bigger bet would mean fewer hands:</b> stay at $50. Extra bankroll buys safety, not growth, until about $2.9M.</li>
+        <li><b>$100 × 5,000 hands</b> is about 1.7× Kelly at $700k. If you play it, the exact solve gives stops of about +$55k / –$76k at the start, tightening to +$20k / –$62k after 4,000 hands. It still grows the bankroll more slowly than $50 played out.</li>
+      </ul>
+
+      <h3>4. Check before relying on this</h3>
+      <ul class="an-rules">
+        <li><b>The rebate base:</b> if the rebate is figured after cashback, the edge drops about 0.025 points. A cap on the rebate cuts into it more, because most of its value comes from big losing trips.</li>
+        <li><b>The bonus terms:</b> the $3,000 is 46% of your profit. Confirm the play it requires, and that it continues for a player playing big trips.</li>
+        <li><b>Taxes (US):</b> starting in 2026, deductible gambling losses are limited to 90% of losses. Depending on how sessions are counted, that could cost several hundred dollars a trip. Check with a tax professional.</li>
+        <li><b>Hand pays:</b> at $50, every quad or better pays at least $2,500, about 24 tax-form hand pays per 10,000 hands. That downtime cuts how many hands fit into 2 days.</li>
+        <li><b>Hold strategy:</b> perfect strategy is worth only about $8 a trip more than basic strategy. The costly errors are TDB's kicker holds and pat-hand vs. low-trips decisions. Practice those in the drill below.</li>
+      </ul>
     </div>
   </details>
 
   <div class="score" role="status">
-    <div class="stat"><span>Answered</span><b id="sAns">0 / 100</b></div>
+    <div class="stat"><span>Answered</span><b id="sAns">0 / 300</b></div>
     <div class="stat good"><span>Correct</span><b id="sOk">0</b></div>
     <div class="stat bad"><span>Missed</span><b id="sBad">0</b></div>
     <div class="stat"><span>EV lost</span><b id="sLost">0.000</b></div>
@@ -321,7 +439,7 @@ function holdLabel(h, mask) {
   return kept.map(k => `<span class="${isRed(k.s) ? "rd" : ""}">${k.r}${SUIT[k.s]}</span>`).join(" ");
 }
 
-const KEY = "tdb97-drill-v2";
+const KEY = "tdb97-drill-v3";
 let state = { order: HANDS.map((_, i) => i), sel: {}, done: {} };
 try {
   const saved = JSON.parse(localStorage.getItem(KEY) || "null");
