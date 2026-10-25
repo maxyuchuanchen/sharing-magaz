@@ -176,6 +176,7 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .analysis + .analysis { margin-top: -8px; }
 .an-rules { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 72ch; }
 .an-rules b { font-weight: 600; }
+.an-table.an-wrap td { white-space: normal; vertical-align: top; min-width: 110px; }
 
 @media (max-width: 680px) {
   .deal { grid-template-columns: 30px minmax(0, 1fr); gap: 10px 12px; }
@@ -445,6 +446,116 @@ ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
         <li><b>Hold strategy:</b> perfect strategy is worth only about $8 a trip more than basic strategy at $50. The expensive errors are TDB's kicker holds and pat-hand vs. low-trips decisions. Practice those in the drill below.</li>
       </ul>
       <p class="an-note">Sources: <a href="https://sbcamericas.com/2025/12/17/irs-slot-tax-threshold-increase/" target="_blank" rel="noopener">2026 W-2G threshold of $2,000</a>. <a href="https://taxnews.ey.com/news/2026-1065-treasury-proposes-regulations-aligning-information-reporting-thresholds-and-wagering-loss-rules-with-recent-statutory-changes" target="_blank" rel="noopener">90% wagering-loss limit</a>. The tax rows assume losing-session losses are the only extra taxable income. They model the cost of the 90% rule only, not tax on your actual profit. Simulations use 1,000,000 trips per case.</p>
+    </div>
+  </details>
+
+  <details class="pay analysis">
+    <summary>Bad luck or a real problem? What to watch</summary>
+    <div class="an-body">
+      <p class="an-note">For the $50 plan: 10,000 hands a trip, every hand played, a $700,000 bankroll, and the same comps as above. Expected profit is +$6,553 a trip, made up of a −$2,111 gaming loss plus $8,664 of cashback, rebate and bonus.</p>
+
+      <div class="an-stats">
+        <div class="an-stat"><b>$49,600</b><span>Standard deviation of one trip's gaming result: 23 times the expected loss</span></div>
+        <div class="an-stat"><b class="hot">$6,900</b><span>The same, after removing the luck in quads, straight flushes and royals: 7× tighter</span></div>
+        <div class="an-stat"><b>~9,800 trips</b><span>To spot strategy errors costing 0.2% from the bottom line alone</span></div>
+        <div class="an-stat"><b class="hot">~190 trips</b><span>To spot the same 0.2% with the luck-adjusted result</span></div>
+      </div>
+
+      <h3>What normal variance looks like</h3>
+      <p>Everything below assumes perfect strategy, correct comps and a fixed $50 bet. If your results stay inside these ranges, nothing points to a problem.</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>After N trips</th><th class="n">Expected</th><th class="n">Median</th><th class="n">Bottom 25%</th><th class="n">Bottom 5%</th><th class="n">Bottom 1%</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td class="n">+$6.6k</td><td class="n">+$0.8k</td><td class="n">–$28.8k</td><td class="n">–$62.5k</td><td class="n">–$80.0k</td></tr>
+            <tr><td>5</td><td class="n">+$32.8k</td><td class="n">+$26.5k</td><td class="n">–$43.9k</td><td class="n">–$135k</td><td class="n">–$194k</td></tr>
+            <tr><td>10</td><td class="n">+$65.5k</td><td class="n">+$60.0k</td><td class="n">–$41.4k</td><td class="n">–$177k</td><td class="n">–$267k</td></tr>
+            <tr><td>25</td><td class="n">+$164k</td><td class="n">+$156k</td><td class="n">–$3.4k</td><td class="n">–$226k</td><td class="n">–$378k</td></tr>
+            <tr><td>50</td><td class="n">+$328k</td><td class="n">+$320k</td><td class="n">+$92k</td><td class="n">–$229k</td><td class="n">–$442k</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Worst drop from a high point, within N trips</th><th class="n">Typical (median)</th><th class="n">1 in 10</th><th class="n">1 in 20</th><th class="n">1 in 100</th></tr></thead>
+          <tbody>
+            <tr><td>5 trips</td><td class="n">$61k</td><td class="n">$131k</td><td class="n">$156k</td><td class="n">$203k</td></tr>
+            <tr><td>10 trips</td><td class="n">$97k</td><td class="n">$194k</td><td class="n">$228k</td><td class="n">$298k</td></tr>
+            <tr><td>25 trips</td><td class="n">$164k</td><td class="n">$304k</td><td class="n">$356k</td><td class="n">$464k</td></tr>
+            <tr><td>50 trips</td><td class="n">$230k</td><td class="n">$409k</td><td class="n">$476k</td><td class="n">$615k</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="an-rules">
+        <li><b>Losing trips are normal.</b> About 49% of trips lose. Over 50 trips, the longest losing streak is typically 5, and 8 happens 1 time in 20.</li>
+        <li><b>The rare tail drives it.</b> You average 2.65 royals and kicker quads a trip. 7% of trips get none, and those trips lose about $62k on average. Over 10 trips you expect 26.5, and 18 or fewer happens 1 time in 20.</li>
+        <li><b>A $200k drop doesn't prove anything is wrong.</b> Within 10 trips it's a roughly 1-in-10 event with perfect play. Drops that large are why the plan switches to $25 if the bankroll falls below about $480k, whatever the cause.</li>
+      </ul>
+
+      <h3>Why the bottom line can't catch a problem</h3>
+      <p>A trip's gaming result swings by about $49,600. A real leak is much smaller: strategy errors costing 0.2% of what you bet cost $1,000 a trip. To tell a leak that size from bad luck using results alone takes about 9,800 trips. By the time your results reveal a leak, it has long since cost you.</p>
+
+      <h3>The luck-adjusted result: use the W-2Gs</h3>
+      <p>At $50, every straight flush, quad and royal pays at least $2,500, so each one comes with a W-2G. Those hands are almost all of the variance. Replace what they actually paid with what they pay on average, and what's left is a measure of everything else with 7× less noise:</p>
+      <p><b>Luck-adjusted result = gaming result − total W-2G jackpots + $13.88 × hands played</b></p>
+      <p>$13.88 is what those hands pay per $50 hand on average (27.76% of each bet). With perfect strategy on a correct 9/7 machine, the luck-adjusted result averages <b>−$0.21 per hand</b> (−$2,111 per 10,000 hands), with an SD of about $6,900 per 10,000 hands. Take the gaming result and hands played from the casino's win/loss and rated-play records, and keep your W-2Gs.</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Average luck-adjusted result per trip, after N trips</th><th class="n">1</th><th class="n">5</th><th class="n">10</th><th class="n">25</th><th class="n">50</th></tr></thead>
+          <tbody>
+            <tr><td>Expected with perfect play</td><td class="n">–$2.1k</td><td class="n">–$2.1k</td><td class="n">–$2.1k</td><td class="n">–$2.1k</td><td class="n">–$2.1k</td></tr>
+            <tr><td>Check if below (2 SD, about 1 in 40 by chance)</td><td class="n">–$15.9k</td><td class="n">–$8.3k</td><td class="n">–$6.5k</td><td class="n">–$4.9k</td><td class="n">–$4.1k</td></tr>
+            <tr class="total"><td>Stop and audit if below (3 SD, about 1 in 700)</td><td class="n">–$22.8k</td><td class="n">–$11.4k</td><td class="n">–$8.7k</td><td class="n">–$6.3k</td><td class="n">–$5.0k</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Problem</th><th class="n">Cost per trip</th><th class="n">Trips to spot: bottom line</th><th class="n">Trips to spot: luck-adjusted</th></tr></thead>
+          <tbody>
+            <tr><td>Strategy errors, 0.05% of bets</td><td class="n">$250</td><td class="n">157,000</td><td class="n">3,060</td></tr>
+            <tr><td>Strategy errors, 0.10%</td><td class="n">$500</td><td class="n">39,000</td><td class="n">765</td></tr>
+            <tr><td>Strategy errors, 0.20%</td><td class="n">$1,000</td><td class="n">9,800</td><td class="n">192</td></tr>
+            <tr><td>Strategy errors, 0.50%</td><td class="n">$2,500</td><td class="n">1,570</td><td class="n">31</td></tr>
+            <tr class="total"><td>A 9/6 machine instead of 9/7 (98.15%)</td><td class="n">$7,100</td><td class="n">200</td><td class="n">4</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The luck adjustment catches big leaks fast, but small strategy errors still take hundreds of trips. Measure those directly in the drill instead. Errors in kicker holds partly change how often the rare hands come up, and the adjustment treats that as luck. That's another reason to drill the kicker decisions.</p>
+
+      <h3>Losses that aren't variance: check these every trip</h3>
+      <div class="table-wrap">
+        <table class="an-table an-wrap">
+          <thead><tr><th>Check</th><th>What it should be</th><th>What a miss costs at $50</th></tr></thead>
+          <tbody>
+            <tr><td>Pay table</td><td>Full house 9, flush 7, straight 4. Four aces with a 2–4 kicker 800, four 2s–4s with an A–4 kicker 400. Check before every session.</td><td>9/6 (98.15%): −$7,100 a trip. 9/7 with straights at 3 (98.46%): −$5,600 a trip.</td></tr>
+            <tr><td>Rated play</td><td>The casino's rated coin-in matches hands × $50. A card that wasn't read is unrated play.</td><td>Cashback, rebate and possibly the bonus lost on the unrated hands</td></tr>
+            <tr><td>Cashback</td><td>0.924% of rated coin-in, about $4,620 a trip</td><td>Dollar for dollar</td></tr>
+            <tr><td>Rebate</td><td>5% of the trip's net gaming loss, credited as free play</td><td>Averages $1,045 a trip, much more after big losing trips</td></tr>
+            <tr><td>Bonus</td><td>$3,000 every trip</td><td>46% of your expected profit</td></tr>
+            <tr><td>Hands played</td><td>About 10,000 a trip</td><td>About $0.66 a hand of expected profit. Each 1,000 hands short costs about $350 in cashback and rebate.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>These items aren't random, so any shortfall is a real problem, not bad luck. Reconcile them after every trip, before you look at the result.</p>
+
+      <h3>Optional: are the common hands coming up at normal rates?</h3>
+      <p>Count these per 10,000 hands (a running tally or the machine's hand history). A count outside the band, trip after trip, points to the machine or your holds. By chance alone, any single count falls outside its band about 1 trip in 370.</p>
+      <div class="table-wrap">
+        <table class="an-table">
+          <thead><tr><th>Per 10,000 hands</th><th class="n">Expected</th><th class="n">SD</th><th class="n">Normal band (±3 SD)</th></tr></thead>
+          <tbody>
+            <tr><td>Jacks or better</td><td class="n">1,979</td><td class="n">40</td><td class="n">1,859 – 2,098</td></tr>
+            <tr><td>Two pair</td><td class="n">1,199</td><td class="n">33</td><td class="n">1,102 – 1,297</td></tr>
+            <tr><td>Three of a kind</td><td class="n">737</td><td class="n">26</td><td class="n">658 – 815</td></tr>
+            <tr><td>Flush</td><td class="n">156</td><td class="n">12</td><td class="n">119 – 193</td></tr>
+            <tr><td>Straight</td><td class="n">127</td><td class="n">11</td><td class="n">93 – 160</td></tr>
+            <tr><td>Full house</td><td class="n">104</td><td class="n">10</td><td class="n">73 – 134</td></tr>
+            <tr><td>Four 5s–Ks</td><td class="n">15.9</td><td class="n">4.0</td><td class="n">4 – 28</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="an-note">These ranges come from simulating 400,000 trips under perfect strategy. The pay-table returns are from the <a href="https://wizardofodds.com/games/video-poker/tables/triple-double-bonus/" target="_blank" rel="noopener">Wizard of Odds Triple Double Bonus tables</a>. Trips are assumed independent.</p>
     </div>
   </details>
 
