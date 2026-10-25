@@ -1,504 +1,345 @@
-<title>9/7 Triple Double Bonus</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="100 hands of 9/7 Triple Double Bonus video poker: pick your hold and check it against the exact best play.">
+<title>9/7 TDB Hold Drill</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
 <style>
-  :root {
-    --paper: #f3f1ec;
-    --surface: #fbfaf6;
-    --ink: #171f1b;
-    --ink-soft: #3c453f;
-    --muted: #6e6a5e;
-    --line: #dbd6c9;
-    --line-strong: #c7c1b0;
-    --felt: #116b48;
-    --felt-ink: #0d5138;
-    --gold: #9a6e22;
-    --gold-ink: #7a5619;
-    --felt-tint: #e4ede8;
-    --gold-tint: #efe5d1;
-    --shadow: 0 1px 2px rgba(23, 31, 27, 0.06), 0 8px 24px -16px rgba(23, 31, 27, 0.25);
+/* Layout: one column of deal rows like a machine's hand history; pick cards on the left, check the answer on the right; stacks on phones */
+:root {
+  --bg: #e6ecea;
+  --surface: #f8faf9;
+  --line: #c9d4d1;
+  --fg: #142120;
+  --muted: #566764;
+  --accent: #a96a0c;
+  --held-bg: #f4c13d;
+  --held-fg: #1d1500;
+  --card: #fffefa;
+  --card-edge: #c7cfcc;
+  --suit-red: #c42f28;
+  --suit-black: #1a1e22;
+  --good: #23784a;
+  --good-soft: #d9efe2;
+  --bad: #b3332b;
+  --bad-soft: #f6dedb;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1615; --surface: #152120; --line: #2a3a38; --fg: #e3ecea; --muted: #90a3a0;
+    --accent: #f2b544; --held-bg: #f4c13d; --held-fg: #1d1500; --card: #f6f3ea; --card-edge: #3a4b48;
+    --suit-red: #c42f28; --suit-black: #1a1e22;
+    --good: #6fcf97; --good-soft: #17352a; --bad: #f08a80; --bad-soft: #3d1f1d; color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1615; --surface: #152120; --line: #2a3a38; --fg: #e3ecea; --muted: #90a3a0;
+  --accent: #f2b544; --held-bg: #f4c13d; --held-fg: #1d1500; --card: #f6f3ea; --card-edge: #3a4b48;
+  --suit-red: #c42f28; --suit-black: #1a1e22;
+  --good: #6fcf97; --good-soft: #17352a; --bad: #f08a80; --bad-soft: #3d1f1d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 960px; margin: 0 auto; display: grid; gap: 20px; }
+header { display: grid; gap: 8px; }
+.eyebrow { font-family: var(--display); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+h1 { font-family: var(--display); font-size: clamp(28px, 5vw, 40px); line-height: 1.1; margin: 0; text-wrap: balance; font-weight: 700; }
+.lede { margin: 0; color: var(--muted); max-width: 64ch; }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #11160f;
-      --surface: #171d16;
-      --ink: #ede9df;
-      --ink-soft: #c3beb0;
-      --muted: #938d7d;
-      --line: #2b332a;
-      --line-strong: #3a4338;
-      --felt: #3fb587;
-      --felt-ink: #6fcba3;
-      --gold: #d2a24a;
-      --gold-ink: #e3b968;
-      --felt-tint: #16261f;
-      --gold-tint: #241e12;
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px -16px rgba(0, 0, 0, 0.55);
-    }
-  }
+details.pay { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; }
+details.pay summary { cursor: pointer; font-family: var(--display); font-weight: 600; letter-spacing: .04em; }
+.paygrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 4px 24px; margin-top: 12px; font-variant-numeric: tabular-nums; }
+.paygrid div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dotted var(--line); padding-block: 3px; }
+.paygrid b { font-family: var(--display); font-weight: 600; }
 
-  :root[data-theme="dark"] {
-    --paper: #11160f;
-    --surface: #171d16;
-    --ink: #ede9df;
-    --ink-soft: #c3beb0;
-    --muted: #938d7d;
-    --line: #2b332a;
-    --line-strong: #3a4338;
-    --felt: #3fb587;
-    --felt-ink: #6fcba3;
-    --gold: #d2a24a;
-    --gold-ink: #e3b968;
-    --felt-tint: #16261f;
-    --gold-tint: #241e12;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px -16px rgba(0, 0, 0, 0.55);
-  }
+.score {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.stat { display: grid; line-height: 1.15; }
+.stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-family: var(--display); }
+.stat b { font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat.good b { color: var(--good); }
+.stat.bad b { color: var(--bad); }
+.tools { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, .btn {
+  font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .03em; color: var(--fg);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 12px; cursor: pointer;
+}
+.btn:hover, select:hover { border-color: var(--accent); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  * { box-sizing: border-box; }
+ol.deals { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.deal {
+  display: grid; grid-template-columns: 40px auto minmax(0, 1fr); gap: 16px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px;
+}
+.deal.right { border-color: var(--good); }
+.deal.wrong { border-color: var(--bad); }
+.num { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 24px; }
+.hand { display: flex; gap: 6px; padding-top: 20px; padding-bottom: 14px; }
+.slot {
+  position: relative; background: none; border: 0; padding: 0; cursor: pointer; border-radius: 7px;
+}
+.slot:disabled { cursor: default; }
+.held {
+  position: absolute; left: 50%; top: -20px; transform: translateX(-50%);
+  font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: .1em;
+  background: var(--held-bg); color: var(--held-fg); padding: 1px 6px; border-radius: 3px;
+  visibility: hidden;
+}
+.slot[aria-pressed="true"] .held { visibility: visible; }
+.card {
+  width: 54px; height: 76px; border-radius: 7px; background: var(--card); border: 1px solid var(--card-edge);
+  display: grid; grid-template-rows: auto 1fr; padding: 4px 6px; box-shadow: 0 1px 2px rgba(0,0,0,.12);
+  transition: transform .15s;
+}
+.slot[aria-pressed="true"] .card { transform: translateY(-5px); box-shadow: 0 0 0 2px var(--held-bg), 0 3px 6px rgba(0,0,0,.18); }
+.slot:not(:disabled):hover .card { border-color: var(--accent); }
+.card .r { font-family: var(--display); font-weight: 700; font-size: 19px; line-height: 1; }
+.card .s { font-size: 28px; line-height: 1; align-self: end; justify-self: end; }
+.card.red { color: var(--suit-red); }
+.card.black { color: var(--suit-black); }
+.mark {
+  position: absolute; left: 50%; bottom: -16px; transform: translateX(-50%);
+  font-family: var(--display); font-size: 10px; font-weight: 700; letter-spacing: .08em; white-space: nowrap;
+  visibility: hidden;
+}
+.deal.done .slot.best .mark { visibility: visible; color: var(--good); }
 
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
+.answer {
+  width: 100%; min-height: 96px; text-align: left; cursor: pointer;
+  border: 1.5px dashed var(--line); border-radius: 8px; background: transparent; padding: 12px 14px;
+  display: grid; align-content: center; gap: 2px;
+}
+.answer:hover { border-color: var(--accent); }
+.answer .cover b { font-family: var(--display); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: 15px; display: block; }
+.answer .cover span { color: var(--muted); font-size: 14px; }
+.result { display: none; gap: 6px; border-radius: 8px; padding: 12px 14px; }
+.deal.done .answer { display: none; }
+.deal.done .result { display: grid; }
+.deal.right .result { background: var(--good-soft); }
+.deal.wrong .result { background: var(--bad-soft); }
+.verdict { font-family: var(--display); font-weight: 700; font-size: 18px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.deal.right .verdict { color: var(--good); }
+.deal.wrong .verdict { color: var(--bad); }
+.verdict small { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.lines { display: grid; gap: 2px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.lines div { display: flex; flex-wrap: wrap; gap: 0 8px; }
+.lines dt, .lines .k { color: var(--muted); min-width: 92px; }
+.why { font-size: 15px; }
+.rd { color: var(--suit-red); }
+.retry { justify-self: start; background: none; border: 0; padding: 0; color: var(--accent); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.empty { color: var(--muted); padding: 24px 0; text-align: center; }
+.foot { color: var(--muted); font-size: 14px; max-width: 64ch; margin: 0; }
 
-  .page {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 64px 24px 96px;
-  }
-
-  @media (max-width: 600px) {
-    .page { padding: 40px 16px 64px; }
-  }
-
-  .eyebrow {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 14px;
-  }
-
-  h1 {
-    font-family: "Fraunces", Georgia, serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-size: clamp(2.1rem, 5vw, 3.1rem);
-    line-height: 1.06;
-    letter-spacing: -0.01em;
-    margin: 0 0 14px;
-    text-wrap: balance;
-    color: var(--ink);
-  }
-
-  .dek {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    max-width: 46ch;
-    margin: 0 0 28px;
-    text-wrap: balance;
-  }
-
-  .masthead-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.78rem;
-    color: var(--muted);
-    padding-top: 22px;
-    border-top: 1px solid var(--line);
-  }
-  .masthead-meta span { white-space: nowrap; }
-
-  /* ---- stat row ---- */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 40px 0 8px;
-  }
-  @media (max-width: 640px) {
-    .stats { grid-template-columns: repeat(2, 1fr); }
-  }
-  .stat {
-    background: var(--surface);
-    padding: 20px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .stat .num {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 1.6rem;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-  .stat .num.accent { color: var(--gold-ink); }
-  .stat .label {
-    font-size: 0.78rem;
-    color: var(--muted);
-    line-height: 1.35;
-  }
-
-  /* ---- section headings ---- */
-  section { margin-top: 56px; }
-  h2 {
-    font-family: "Fraunces", Georgia, serif;
-    font-weight: 600;
-    font-size: 1.5rem;
-    letter-spacing: -0.005em;
-    margin: 0 0 6px;
-    color: var(--ink);
-  }
-  .section-note {
-    font-size: 0.98rem;
-    color: var(--muted);
-    margin: 0 0 24px;
-    max-width: 58ch;
-    line-height: 1.55;
-  }
-
-  p { line-height: 1.65; font-size: 1.02rem; color: var(--ink-soft); }
-  p.lead-in { margin: 0 0 24px; max-width: 62ch; }
-
-  /* ---- paytable ---- */
-  .table-wrap {
-    overflow-x: auto;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 920px;
-    font-size: 0.92rem;
-  }
-  thead th {
-    text-align: left;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--muted);
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--line-strong);
-    white-space: nowrap;
-  }
-  thead th.num, td.num { text-align: right; }
-  tbody td {
-    padding: 11px 16px;
-    border-bottom: 1px solid var(--line);
-    vertical-align: middle;
-    font-family: "Source Serif 4", serif;
-    color: var(--ink);
-  }
-  tbody tr:last-of-type td { border-bottom: none; }
-  td.num, td.pay {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-variant-numeric: tabular-nums;
-    font-size: 0.88rem;
-    white-space: nowrap;
-  }
-  td.hand { display: flex; align-items: center; gap: 9px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
-  .dot.core { background: var(--felt); }
-  .dot.premium { background: var(--gold); }
-  tr.total td {
-    font-weight: 600;
-    border-top: 1px solid var(--line-strong);
-    border-bottom: none;
-    padding-top: 13px;
-    color: var(--ink);
-    background: var(--paper);
-  }
-  tr.nothing td { color: var(--muted); }
-
-  /* ---- bar chart ---- */
-  .legend {
-    display: flex;
-    gap: 22px;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.76rem;
-    color: var(--muted);
-    margin-bottom: 18px;
-  }
-  .legend span { display: inline-flex; align-items: center; gap: 7px; }
-  .legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-  .legend i.core { background: var(--felt); }
-  .legend i.premium { background: var(--gold); }
-
-  .chart {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    padding: 20px 20px 22px;
-  }
-  .bar-row {
-    display: grid;
-    grid-template-columns: 160px 1fr 58px;
-    align-items: center;
-    gap: 12px;
-    padding: 6px 0;
-  }
-  @media (max-width: 560px) {
-    .bar-row { grid-template-columns: 108px 1fr 50px; gap: 8px; }
-  }
-  .bar-label {
-    font-size: 0.82rem;
-    color: var(--ink-soft);
-    line-height: 1.25;
-  }
-  .bar-track {
-    position: relative;
-    height: 15px;
-    background: var(--paper);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .bar-fill {
-    position: absolute;
-    inset: 0 auto 0 0;
-    border-radius: 3px;
-    background: var(--felt);
-  }
-  .bar-fill.premium { background: var(--gold); }
-  .bar-value {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.82rem;
-    font-variant-numeric: tabular-nums;
-    text-align: right;
-    color: var(--ink);
-  }
-
-  /* ---- insight panel ---- */
-  .insight {
-    border: 1px solid var(--line-strong);
-    border-left: 3px solid var(--gold);
-    border-radius: 8px;
-    background: var(--gold-tint);
-    padding: 26px 28px;
-  }
-  .insight p { color: var(--ink); max-width: 64ch; }
-  .insight p + p { margin-top: 14px; }
-  .insight .ratio {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-weight: 600;
-    color: var(--gold-ink);
-  }
-  .insight .kicker {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold-ink);
-    margin: 0 0 10px;
-  }
-
-  footer {
-    margin-top: 64px;
-    padding-top: 22px;
-    border-top: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.74rem;
-    color: var(--muted);
-  }
-  footer a { color: var(--felt-ink); text-decoration: none; border-bottom: 1px solid currentColor; }
-  footer a:hover { color: var(--gold-ink); }
-
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--felt); outline-offset: 2px; }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .bar-fill { transition: filter 0.15s ease; }
-  }
-  .bar-row:hover .bar-fill { filter: brightness(1.08); }
+@media (max-width: 680px) {
+  .deal { grid-template-columns: 30px minmax(0, 1fr); gap: 10px 12px; }
+  .num { font-size: 17px; }
+  .answer, .result { grid-column: 1 / -1; }
+  .card { width: 48px; height: 68px; }
+  .hand { gap: 5px; }
+  .tools { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
 </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Triple Double Bonus · 9/7 pay table</div>
+    <h1>9/7 TDB Hold Drill</h1>
+    <p class="lede">Tap cards to hold them, then check your hold. Holding nothing means you draw five new cards. Each answer comes from an exact calculation over all 32 ways to hold the hand, so you also see how much EV a wrong hold costs.</p>
+  </header>
 
-<div class="page">
+  <details class="pay">
+    <summary>Pay table (per coin, max bet)</summary>
+    <div class="paygrid">
+      <div><span>Royal flush</span><b>800</b></div>
+      <div><span>Four aces + 2, 3, 4</span><b>800</b></div>
+      <div><span>Four 2s–4s + A, 2, 3, 4</span><b>400</b></div>
+      <div><span>Four aces</span><b>160</b></div>
+      <div><span>Four 2s–4s</span><b>80</b></div>
+      <div><span>Straight flush</span><b>50</b></div>
+      <div><span>Four 5s–Ks</span><b>50</b></div>
+      <div><span>Full house</span><b>9</b></div>
+      <div><span>Flush</span><b>7</b></div>
+      <div><span>Straight</span><b>4</b></div>
+      <div><span>Three of a kind</span><b>2</b></div>
+      <div><span>Two pair</span><b>1</b></div>
+      <div><span>Jacks or better</span><b>1</b></div>
+    </div>
+  </details>
 
-  <p class="eyebrow">Video poker return analysis — optimal strategy</p>
-  <h1>9/7 Triple Double Bonus</h1>
-  <p class="dek">The paytable advertises 99.58% back. Here is which thirteen hands actually deliver it — and how concentrated that return really is.</p>
-  <div class="masthead-meta">
-    <span>Basis: 2,598,960 starting hands, full optimal-strategy draw tree</span>
-    <span>Source: Wizard of Odds return tables</span>
-    <span>Compiled 2026-10-20</span>
+  <div class="score" role="status">
+    <div class="stat"><span>Answered</span><b id="sAns">0 / 100</b></div>
+    <div class="stat good"><span>Correct</span><b id="sOk">0</b></div>
+    <div class="stat bad"><span>Missed</span><b id="sBad">0</b></div>
+    <div class="stat"><span>EV lost</span><b id="sLost">0.000</b></div>
+    <div class="tools">
+      <label for="filter" style="position:absolute;left:-9999px">Show</label>
+      <select id="filter">
+        <option value="all">All hands</option>
+        <option value="todo">Not answered</option>
+        <option value="wrong">Missed</option>
+      </select>
+      <button class="btn" id="shuffle" type="button">Shuffle</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
   </div>
 
-  <div class="stats">
-    <div class="stat">
-      <div class="num">99.58%</div>
-      <div class="label">Total theoretical return, optimal play</div>
-    </div>
-    <div class="stat">
-      <div class="num">1 in 3,774</div>
-      <div class="label">Frequency of royal flush + both kicker-quad hands, combined</div>
-    </div>
-    <div class="stat">
-      <div class="num accent">14.36%</div>
-      <div class="label">Share of RTP those same three hands deliver</div>
-    </div>
-    <div class="stat">
-      <div class="num accent">539×</div>
-      <div class="label">Return concentration vs. their frequency share</div>
-    </div>
-  </div>
+  <ol class="deals" id="deals"></ol>
 
-  <section>
-    <h2>The full paytable</h2>
-    <p class="section-note">Every winning category, ranked as dealt. The dot marks which group each hand belongs to in the chart below — core hands you hit often, premium hands you wait for.</p>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Result</th>
-            <th class="num">Frequency</th>
-            <th class="num">1 hit per</th>
-            <th class="num">Pay</th>
-            <th class="num">RTP contribution</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="hand"><span class="dot premium"></span>Royal flush</td><td class="num">0.0022%</td><td class="num pay">45,455 hands</td><td class="num pay">800×</td><td class="num">1.76%</td></tr>
-          <tr><td class="hand"><span class="dot premium"></span>Straight flush</td><td class="num">0.0118%</td><td class="num pay">8,475 hands</td><td class="num pay">50×</td><td class="num">0.59%</td></tr>
-          <tr><td class="hand"><span class="dot premium"></span>Aces + 2/3/4 kicker</td><td class="num">0.0070%</td><td class="num pay">14,286 hands</td><td class="num pay">800×</td><td class="num">5.63%</td></tr>
-          <tr><td class="hand"><span class="dot premium"></span>Quad 2/3/4 + low kicker</td><td class="num">0.0173%</td><td class="num pay">5,780 hands</td><td class="num pay">400×</td><td class="num">6.90%</td></tr>
-          <tr><td class="hand"><span class="dot premium"></span>Aces, no premium kicker</td><td class="num">0.0148%</td><td class="num pay">6,757 hands</td><td class="num pay">160×</td><td class="num">2.37%</td></tr>
-          <tr><td class="hand"><span class="dot premium"></span>Quad 2/3/4, no premium kicker</td><td class="num">0.0320%</td><td class="num pay">3,125 hands</td><td class="num pay">80×</td><td class="num">2.56%</td></tr>
-          <tr><td class="hand"><span class="dot premium"></span>Quad 5–K</td><td class="num">0.1589%</td><td class="num pay">629 hands</td><td class="num pay">50×</td><td class="num">7.94%</td></tr>
-          <tr><td class="hand"><span class="dot core"></span>Full house</td><td class="num">1.035%</td><td class="num pay">96.6 hands</td><td class="num pay">9×</td><td class="num">9.32%</td></tr>
-          <tr><td class="hand"><span class="dot core"></span>Flush</td><td class="num">1.562%</td><td class="num pay">64.0 hands</td><td class="num pay">7×</td><td class="num">10.93%</td></tr>
-          <tr><td class="hand"><span class="dot core"></span>Straight</td><td class="num">1.265%</td><td class="num pay">79.0 hands</td><td class="num pay">4×</td><td class="num">5.06%</td></tr>
-          <tr><td class="hand"><span class="dot core"></span>Trips</td><td class="num">7.366%</td><td class="num pay">13.6 hands</td><td class="num pay">2×</td><td class="num">14.73%</td></tr>
-          <tr><td class="hand"><span class="dot core"></span>Two pair</td><td class="num">11.993%</td><td class="num pay">8.34 hands</td><td class="num pay">1×</td><td class="num">11.99%</td></tr>
-          <tr><td class="hand"><span class="dot core"></span>Jacks+</td><td class="num">19.786%</td><td class="num pay">5.05 hands</td><td class="num pay">1×</td><td class="num">19.79%</td></tr>
-          <tr class="nothing"><td class="hand">Nothing</td><td class="num">56.749%</td><td class="num pay">1.76 hands</td><td class="num pay">0</td><td class="num">0.00%</td></tr>
-          <tr class="total"><td>Total</td><td class="num">100.00%</td><td class="num"></td><td class="num"></td><td class="num">99.58%</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Where the 99.58% actually comes from</h2>
-    <p class="section-note">Same thirteen hands, sorted by how many cents of return per $1 wagered they contribute. Bar length is scaled to the largest contributor, Jacks or better.</p>
-    <div class="legend">
-      <span><i class="core"></i>Core — hit every few hands</span>
-      <span><i class="premium"></i>Premium — the rare, high-pay tail</span>
-    </div>
-    <div class="chart">
-      <div class="bar-row"><div class="bar-label">Jacks+</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">19.79%</div></div>
-      <div class="bar-row"><div class="bar-label">Trips</div><div class="bar-track"><div class="bar-fill" style="width:74.4%"></div></div><div class="bar-value">14.73%</div></div>
-      <div class="bar-row"><div class="bar-label">Two pair</div><div class="bar-track"><div class="bar-fill" style="width:60.6%"></div></div><div class="bar-value">11.99%</div></div>
-      <div class="bar-row"><div class="bar-label">Flush</div><div class="bar-track"><div class="bar-fill" style="width:55.2%"></div></div><div class="bar-value">10.93%</div></div>
-      <div class="bar-row"><div class="bar-label">Full house</div><div class="bar-track"><div class="bar-fill" style="width:47.1%"></div></div><div class="bar-value">9.32%</div></div>
-      <div class="bar-row"><div class="bar-label">Quad 5–K</div><div class="bar-track"><div class="bar-fill premium" style="width:40.1%"></div></div><div class="bar-value">7.94%</div></div>
-      <div class="bar-row"><div class="bar-label">Quad 2/3/4 + low kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:34.9%"></div></div><div class="bar-value">6.90%</div></div>
-      <div class="bar-row"><div class="bar-label">Aces + 2/3/4 kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:28.4%"></div></div><div class="bar-value">5.63%</div></div>
-      <div class="bar-row"><div class="bar-label">Straight</div><div class="bar-track"><div class="bar-fill" style="width:25.6%"></div></div><div class="bar-value">5.06%</div></div>
-      <div class="bar-row"><div class="bar-label">Quad 2/3/4, no kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:12.9%"></div></div><div class="bar-value">2.56%</div></div>
-      <div class="bar-row"><div class="bar-label">Aces, no kicker</div><div class="bar-track"><div class="bar-fill premium" style="width:12.0%"></div></div><div class="bar-value">2.37%</div></div>
-      <div class="bar-row"><div class="bar-label">Royal flush</div><div class="bar-track"><div class="bar-fill premium" style="width:8.9%"></div></div><div class="bar-value">1.76%</div></div>
-      <div class="bar-row"><div class="bar-label">Straight flush</div><div class="bar-track"><div class="bar-fill premium" style="width:3.0%"></div></div><div class="bar-value">0.59%</div></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>The concentration, quantified</h2>
-    <p class="lead-in">Royal flush, aces with a 2/3/4 kicker, and quad 2/3/4 with a low kicker are not where most of the return lives — the five common hands (jacks-or-better through full house) still account for roughly two-thirds of RTP. But relative to how rarely they land, those three hands are wildly overrepresented in the payback.</p>
-
-    <div class="insight">
-      <p class="kicker">The headline number</p>
-      <p>Royal flush, aces-with-kicker, and quad-234-with-kicker occur on just <strong>0.0265%</strong> of hands — about 1 in 3,774 deals — combined. Yet together they deliver <strong>14.36%</strong> of the entire 99.58% return. That's a <span class="ratio">≈539×</span> overrepresentation: a dollar of payback from this slice is clustered into events roughly 539 times more concentrated than their occurrence rate alone would predict.</p>
-      <p>Widen the lens to the full bonus family — every quad category plus straight flush and royal — and the pattern holds at smaller scale: <strong>0.244%</strong> of hands produce <strong>27.9%</strong> of RTP, a <span class="ratio">≈114×</span> concentration. This is the defining trait of the Bonus-poker lineage: expected value is carried by frequent small hands, but realized return — and bankroll variance — is carried by a rare, high-pay tail. Sessions can run far below 99.58% for thousands of hands purely from missing that tail, independent of strategy quality.</p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Bankroll variance at $50/hand, half-Kelly</h2>
-    <p class="section-note">Assumes a 1.42% player edge (base 99.58% return plus cashback/comp value), $50 wagered per hand, 5,000 hands/day. Volatility is pulled straight from this paytable's own payout distribution — not a generic video-poker estimate.</p>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="num">$495</div>
-        <div class="label">Standard deviation per hand (this paytable's actual payout volatility)</div>
-      </div>
-      <div class="stat">
-        <div class="num">$35,016</div>
-        <div class="label">Standard deviation per day, 5,000 hands</div>
-      </div>
-      <div class="stat">
-        <div class="num accent">~97 days</div>
-        <div class="label">Play needed (≈486,500 hands) before the edge equals 1 SD of noise</div>
-      </div>
-      <div class="stat">
-        <div class="num accent">≈$690,600</div>
-        <div class="label">Bankroll implied if $50/hand is genuinely half-Kelly at this edge</div>
-      </div>
-    </div>
-
-    <div class="table-wrap" style="margin-top:24px;">
-      <table>
-        <thead>
-          <tr>
-            <th>Session</th>
-            <th class="num">Hands</th>
-            <th class="num">Expected profit</th>
-            <th class="num">Standard deviation</th>
-            <th class="num">68% range (±1σ)</th>
-            <th class="num">95% range (±2σ)</th>
-            <th class="num">P(ahead)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="hand">1 day</td><td class="num pay">5,000</td><td class="num pay">$3,550</td><td class="num pay">$35,016</td><td class="num pay">–$31,466 to $38,566</td><td class="num pay">–$66,482 to $73,582</td><td class="num pay">54.0%</td></tr>
-          <tr><td class="hand">3 days</td><td class="num pay">15,000</td><td class="num pay">$10,650</td><td class="num pay">$60,653</td><td class="num pay">–$50,003 to $71,303</td><td class="num pay">–$110,656 to $131,956</td><td class="num pay">57.0%</td></tr>
-          <tr><td class="hand">5 days</td><td class="num pay">25,000</td><td class="num pay">$17,750</td><td class="num pay">$78,314</td><td class="num pay">–$60,564 to $96,064</td><td class="num pay">–$138,878 to $174,378</td><td class="num pay">59.0%</td></tr>
-          <tr><td class="hand">7 days</td><td class="num pay">35,000</td><td class="num pay">$24,850</td><td class="num pay">$92,636</td><td class="num pay">–$67,786 to $117,486</td><td class="num pay">–$160,422 to $210,122</td><td class="num pay">60.6%</td></tr>
-          <tr><td class="hand">14 days</td><td class="num pay">70,000</td><td class="num pay">$49,700</td><td class="num pay">$131,015</td><td class="num pay">–$81,315 to $180,715</td><td class="num pay">–$212,330 to $311,730</td><td class="num pay">64.8%</td></tr>
-          <tr><td class="hand">30 days</td><td class="num pay">150,000</td><td class="num pay">$106,500</td><td class="num pay">$191,787</td><td class="num pay">–$85,287 to $298,287</td><td class="num pay">–$277,074 to $490,074</td><td class="num pay">71.1%</td></tr>
-          <tr class="total"><td>~97 days</td><td class="num">≈486,500</td><td class="num">≈$345,400</td><td class="num">≈$345,400</td><td class="num">1 SD = expected profit</td><td class="num"></td><td class="num">84.1%</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="insight" style="margin-top:24px;">
-      <p class="kicker">What this means at the table</p>
-      <p>At $50/hand the per-hand result swings by <strong>$495 SD</strong> against a <strong>71¢ mean</strong> — a 700:1 noise-to-signal ratio on any single hand. That ratio shrinks only with <span class="ratio">√hands</span>, which is why even a full week of 5,000-hand days (35,000 hands) leaves a 95% range running from a six-figure loss to a six-figure win, and only a 60.6% chance of being ahead at all. The edge is real, but it is a <em>long-run</em> property: it takes on the order of <strong>486,500 hands — about 97 days</strong> at this pace — before expected profit catches up to a single standard deviation of variance. The same kicker-quad tail that drives the RTP concentration above is exactly what drives this: the variance is dominated by the same rare, high-pay hands, not by the common ones.</p>
-      <p>Cross-check: a $50 bet as true half-Kelly at a 1.42% edge and this payout variance implies a bankroll near <strong>$690,600</strong>. If your actual roll is smaller than that, $50/hand is more aggressive than half-Kelly and the swings above understate your real risk of ruin; if it's larger, there's room to size up without leaving the half-Kelly band.</p>
-    </div>
-  </section>
-
-  <footer>
-    <span>Methodology: payout × combinatorial probability under full optimal-strategy draw analysis, C(52,5) = 2,598,960 starting hands</span>
-    <span><a href="https://wizardofodds.com/games/video-poker/tables/triple-double-bonus/" target="_blank" rel="noopener">wizardofodds.com — Triple Double Bonus return tables</a></span>
-  </footer>
-
+  <p class="foot">EV is the expected return per coin bet for a hold. A hold that ties the best EV counts as correct. Your answers are saved in this browser, so you can come back and continue later.</p>
 </div>
+
+<script>
+const HANDS = [{"c":"3c 3d 3h Kc 4s","evs":[0.3058,0.1791,0.1856,0.3508,0.1856,0.3508,0.3508,9.0028,0.414,0.3191,0.2479,0.3071,0.2479,0.3071,0.3071,4.1064,0.2773,0.1689,0.1689,0.3071,0.1689,0.3071,0.3071,10.9149,0.2799,0.1526,0.1526,0.1702,0.1526,0.1702,0.1702,2.0],"best":23,"next":"3♣ 3♦ 3♥","nextEv":9.0028,"why":"Holding three 3s plus the 4 kicker beats three 3s. With three aces keep a 2, 3 or 4 kicker. With three 2s, 3s or 4s keep an A, 2, 3 or 4 kicker. The bonus quad pays 800 or 400."},{"c":"Jh Jd Th 9h 8h","evs":[0.2937,0.3023,0.3218,1.3317,0.2225,0.3388,0.2539,1.1896,0.224,0.2744,0.2381,1.1896,0.2066,0.5384,0.2692,1.0426,0.2278,0.2625,0.2263,1.1896,0.1987,0.4431,0.21,1.0426,0.2169,0.4431,0.21,1.0426,0.4468,3.7234,0.7234,1.0],"best":29,"next":"J♥ J♦","nextEv":1.3317,"why":"Holding 4 to a straight flush beats the pair of jacks."},{"c":"Jc 7h 7c 5c Kc","evs":[0.2882,0.3934,0.2001,0.2669,0.1847,0.3055,0.6189,0.4487,0.2283,0.3069,0.1574,0.1545,0.2009,0.3876,0.4487,0.2128,0.3845,0.5235,0.2511,0.2599,0.2873,0.4931,0.4487,0.2128,0.3069,0.4968,0.1545,0.1277,0.3876,1.4681,0.2128,0.0],"best":29,"next":"7♥ 7♣","nextEv":0.6189,"why":"Holding 4 to a flush beats the low pair (7s)."},{"c":"6d 5d 3h Jd 3d","evs":[0.3026,0.2381,0.235,0.2318,0.2066,0.1406,0.1564,0.1702,0.4154,0.3136,0.3136,0.3969,0.2579,0.1573,0.1573,0.0638,0.1915,0.1769,0.1951,0.4755,0.9389,0.4764,0.4764,0.2128,0.2942,0.3904,0.3904,1.4043,0.4764,0.2128,0.2128,0.0],"best":27,"next":"3♥ 3♦","nextEv":0.9389,"why":"Holding 4 to a flush beats the low pair (3s)."},{"c":"Kd Js 9h 9c 9d","evs":[0.293,0.3964,0.4064,0.4247,0.1786,0.2527,0.2843,0.3173,0.1786,0.2527,0.2843,0.3173,0.3508,0.3071,0.3071,0.1702,0.1719,0.3264,0.2843,0.3173,0.3508,0.3071,0.3071,0.1702,0.3508,0.3071,0.3071,0.1702,4.4699,3.4681,3.4681,2.0],"best":28,"next":"K♦ 9♥ 9♣ 9♦","nextEv":3.4681,"why":"Holding three 9s beats three 9s plus the king kicker."},{"c":"5h Jd 4d 5s 5c","evs":[0.3058,0.1909,0.4261,0.2479,0.2739,0.1649,0.3512,0.1526,0.1909,0.3508,0.2479,0.3071,0.1649,0.3071,0.1526,0.1702,0.1909,0.3508,0.2479,0.3071,0.1649,0.3071,0.1526,0.1702,0.3508,4.4699,0.3071,3.4681,0.3071,3.4681,0.1702,2.0],"best":25,"next":"5♥ J♦ 5♠ 5♣","nextEv":3.4681,"why":"Holding three 5s beats three 5s plus the jack kicker."},{"c":"4h 4s 4d 2c 2d","evs":[0.3287,0.2046,0.2046,0.3547,0.1977,0.3547,0.3547,8.7132,0.214,0.1198,0.1198,0.2488,0.1198,0.2488,0.2488,10.766,0.2071,0.1198,0.1198,0.2488,0.1959,0.2488,0.2488,10.766,0.8921,0.6512,0.6512,1.5106,0.6512,1.5106,1.5106,9.0],"best":15,"next":"Stand pat","nextEv":9.0,"why":"Holding three 4s plus the 2 kicker beats the pat full house. Break the full house and keep the bonus kicker. Equal holds: 4♥ 4♠ 4♦ 2♦."},{"c":"5h Ks Kh Kc 5d","evs":[0.2962,0.2035,0.2398,0.1277,0.2333,0.199,1.1145,1.0629,0.2398,0.1277,1.1145,1.0629,1.1145,1.0629,4.4764,3.3191,0.2099,0.6313,0.1277,0.3275,0.1277,0.3275,1.0629,1.5106,0.1277,0.3275,1.0629,1.5106,1.0629,1.5106,3.3191,9.0],"best":31,"next":"K♠ K♥ K♣","nextEv":4.4764,"why":"Holding the pat full house beats three kings. Here the full house pays more than drawing to the trips."},{"c":"Td Ts Jh Qh Ks","evs":[0.27,0.1873,0.1761,0.6189,0.3808,0.2896,0.2896,0.4487,0.3777,0.2738,0.2738,0.4487,0.5424,0.4052,0.4052,0.2128,0.3756,0.262,0.3843,0.4487,0.4098,0.346,0.346,0.2128,0.4098,0.346,0.346,0.2128,0.4228,0.8723,0.8723,0.0],"best":29,"next":"10♦ 10♠","nextEv":0.6189,"why":"Holding 4 to an open-ended straight beats the low pair (10s). Equal holds: 10♠ J♥ Q♥ K♠."},{"c":"As Ad Ac Kh Kd","evs":[0.2596,0.2197,0.2088,1.1145,0.2197,1.1145,1.1145,16.2618,0.294,0.2372,0.2372,1.0629,0.2372,1.0629,1.0629,5.6596,0.2831,0.2372,0.3571,1.0629,0.2372,1.0629,1.0629,5.6596,1.3368,1.1415,1.1415,1.5106,1.1415,1.5106,1.5106,9.0],"best":7,"next":"Stand pat","nextEv":9.0,"why":"Break an aces-full full house. Drawing two cards to three aces gives you a shot at the 800 kicker quad."},{"c":"Kh Ks Kd 2c 2d","evs":[0.2953,0.2396,0.2396,1.1145,0.2331,1.1145,1.1145,4.4764,0.1991,0.1277,0.1277,1.0629,0.1277,1.0629,1.0629,3.3191,0.1926,0.1277,0.1277,1.0629,0.199,1.0629,1.0629,3.3191,0.9513,0.3552,0.3552,1.5106,0.3552,1.5106,1.5106,9.0],"best":31,"next":"K♥ K♠ K♦","nextEv":4.4764,"why":"Holding the pat full house beats three kings. Here the full house pays more than drawing to the trips."},{"c":"As Ah Ad Kc 3s","evs":[0.2638,0.2187,0.2254,1.113,0.2254,1.113,1.113,15.6633,0.3914,0.3011,0.3011,1.0842,0.3011,1.0842,1.0842,5.8085,0.2467,0.2483,0.1747,1.0842,0.1747,1.0842,1.0842,19.4255,0.2662,0.1841,0.1841,1.0213,0.1841,1.0213,1.0213,2.0],"best":23,"next":"A♠ A♥ A♦","nextEv":15.6633,"why":"Keep a 2, 3 or 4 kicker with three aces. Hitting the fourth ace then pays 800 instead of 160."},{"c":"7s Jd 9c Ah 8c","evs":[0.2719,0.2393,0.4074,0.2791,0.2295,0.1687,0.3068,0.2054,0.4783,0.277,0.427,0.2636,0.277,0.161,0.2636,0.1277,0.2295,0.1845,0.291,0.2054,0.2614,0.2211,0.2646,0.4043,0.277,0.161,0.2636,0.1277,0.161,0.0638,0.1277,0.0],"best":8,"next":"J♦ A♥","nextEv":0.427,"why":"Holding the ace alone beats two unsuited high cards."},{"c":"Qs 9s 2d Jd Ks","evs":[0.2629,0.3746,0.2191,0.3385,0.2497,0.2654,0.1313,0.1582,0.3887,0.4303,0.3001,0.3645,0.3367,0.2609,0.1582,0.1277,0.3714,0.5189,0.3243,0.6327,0.2654,0.2609,0.1582,0.1277,0.4184,0.4672,0.3053,0.5319,0.2609,0.1915,0.1277,0.0],"best":19,"next":"Q♠ 9♠ J♦ K♠","nextEv":0.5319,"why":"Holding 3 to a straight flush beats 4 to an inside straight (3 high cards)."},{"c":"Ac Ad Ah As 3c","evs":[0.2907,0.1531,0.1598,1.0222,0.1598,1.0222,1.0222,2.4468,0.1598,1.0222,1.0222,2.4468,1.0222,2.4468,2.4468,309.7872,0.2601,0.1924,0.1188,1.0222,0.1188,1.0222,1.0222,2.4468,0.1188,1.0222,1.0222,2.4468,1.0222,2.4468,2.4468,800.0],"best":31,"next":"A♣ A♦ A♥ A♠","nextEv":309.7872,"why":"Holding the pat hand (pays 800) beats four aces. Your kicker already earns the bonus."},{"c":"4s Jh 8d Qc 9s","evs":[0.276,0.2718,0.4068,0.2721,0.2394,0.1537,0.291,0.161,0.4033,0.2721,0.4409,0.2636,0.2791,0.161,0.308,0.1277,0.2319,0.2092,0.3028,0.161,0.1884,0.0583,0.2646,0.0638,0.291,0.161,0.3673,0.1277,0.2054,0.0638,0.4681,0.0],"best":30,"next":"J♥ Q♣","nextEv":0.4409,"why":"Holding 4 to an inside straight (2 high cards) beats two unsuited high cards."},{"c":"Ts Js Qs Ks 9h","evs":[0.2682,0.2083,0.3725,0.3385,0.3693,0.3243,0.4584,0.6522,0.3668,0.3154,0.4495,0.5717,0.4495,0.5717,0.6744,19.7447,0.2269,0.1726,0.291,0.2951,0.2791,0.2359,0.3386,0.7234,0.2702,0.1915,0.2942,0.383,0.2942,0.383,0.4468,4.0],"best":15,"next":"Stand pat","nextEv":4.0,"why":"Holding 4 to a royal flush beats the pat straight. Break a made hand for four to a royal."},{"c":"6s Ks 8s Kh 3s","evs":[0.2901,0.2324,0.3058,0.2448,0.2357,0.2296,0.2448,0.3543,0.3203,0.2085,1.3317,1.1896,0.2085,0.1212,1.1896,1.0426,0.2616,0.2133,0.2466,0.3543,0.1769,0.2923,0.3543,1.383,0.2104,0.1212,1.1896,1.0426,0.1212,0.0426,1.0426,1.0],"best":23,"next":"K♠ K♥","nextEv":1.3317,"why":"Holding 4 to a flush beats the pair of kings."},{"c":"Ad Jd Jc 5s 5c","evs":[0.268,0.4583,0.3089,0.4854,0.3133,0.3655,1.3336,1.1896,0.1971,0.2693,0.1839,0.2202,0.1839,0.2202,1.1619,1.0426,0.1906,0.2693,0.1839,0.2202,0.2551,0.2202,1.1619,1.0426,0.6231,0.4496,0.3848,0.1915,0.3848,0.1915,1.6809,1.0],"best":30,"next":"J♦ J♣","nextEv":1.3336,"why":"Holding two pair beats the pair of jacks."},{"c":"2s 8d 4d 8s 8h","evs":[0.3216,0.2841,0.2011,0.1088,0.2915,0.2259,0.1982,0.0472,0.2013,0.18,0.3508,0.3071,0.1246,0.0472,0.3071,0.1702,0.2078,0.1088,0.3508,0.3071,0.1246,0.0472,0.3071,0.1702,0.3508,0.3071,4.4699,3.4681,0.3071,0.1702,3.4681,2.0],"best":26,"next":"2♠ 8♦ 8♠ 8♥","nextEv":3.4681,"why":"Holding three 8s beats three 8s plus the 2 kicker."},{"c":"2d 4s Jd 3c As","evs":[0.2662,0.242,0.2522,0.2,0.4077,0.3433,0.2721,0.161,0.253,0.2,0.2158,0.1619,0.2721,0.161,0.161,0.0638,0.4516,0.347,0.4206,0.2054,0.427,0.2636,0.2636,0.1277,0.347,0.2054,0.2054,0.4043,0.2636,0.1277,0.1277,0.0],"best":16,"next":"J♦ A♠","nextEv":0.427,"why":"Holding the ace alone beats two unsuited high cards."},{"c":"2c 2d 2h As 9c","evs":[0.3023,0.1738,0.1802,0.3508,0.1802,0.3508,0.3508,9.0028,0.4787,0.31,0.31,0.3071,0.31,0.3071,0.3071,10.9149,0.2603,0.1711,0.0999,0.3071,0.0999,0.3071,0.3071,4.1064,0.2849,0.1526,0.1526,0.1702,0.1526,0.1702,0.1702,2.0],"best":15,"next":"2♣ 2♦ 2♥","nextEv":9.0028,"why":"Keep an A, 2, 3 or 4 kicker with three 2s, 3s or 4s. The fourth deuce then pays 400 instead of 80."},{"c":"9d 7d Jd Qd Qh","evs":[0.2759,0.2156,0.2232,0.2166,0.378,0.3299,0.3142,0.4875,0.2884,0.2616,0.2379,0.3515,0.467,0.6475,0.457,1.4468,0.3078,0.2253,0.2017,0.1184,0.3821,0.3423,0.2239,0.1064,1.3317,1.1896,1.1896,1.0426,1.1896,1.0426,1.0426,1.0],"best":15,"next":"Q♦ Q♥","nextEv":1.3317,"why":"Holding 4 to a flush beats the pair of queens."},{"c":"Ac Qc 9c 6c 6d","evs":[0.2796,0.4611,0.3882,0.5121,0.2275,0.3137,0.3433,0.4968,0.1874,0.2941,0.2873,0.4931,0.1827,0.3876,0.3876,1.4681,0.2023,0.2578,0.2511,0.2599,0.1417,0.1545,0.1545,0.1277,0.6189,0.4487,0.4487,0.2128,0.4487,0.2128,0.2128,0.0],"best":15,"next":"6♣ 6♦","nextEv":0.6189,"why":"Holding 4 to a flush beats the low pair (6s)."},{"c":"Jh Th 9h 3d 3c","evs":[0.3005,0.4046,0.2408,0.4291,0.2425,0.3647,0.2489,0.741,0.2131,0.2579,0.1169,0.1573,0.1169,0.1573,0.0518,0.0638,0.2131,0.2579,0.1169,0.1573,0.1169,0.1573,0.0518,0.0638,0.9389,0.4764,0.4764,0.2128,0.4764,0.2128,0.2128,0.0],"best":24,"next":"J♥ 10♥ 9♥","nextEv":0.741,"why":"A low pair beats three to a straight flush."},{"c":"As Qh Js Ks Qd","evs":[0.2323,0.4303,0.282,0.3446,0.36,0.4512,0.3655,0.3682,0.3509,0.4512,0.3497,0.3682,0.4547,1.4098,0.4274,0.5745,0.282,0.3446,1.3317,1.1896,0.3655,0.3682,1.1896,1.0426,0.3497,0.3682,1.1896,1.0426,0.4274,0.5745,1.0426,1.0],"best":13,"next":"Q♥ Q♦","nextEv":1.3317,"why":"Holding 3 to a royal flush beats the pair of queens."},{"c":"5c 5d 9c Jc 2c","evs":[0.302,0.1984,0.2135,0.6189,0.2409,0.1714,0.1327,0.4487,0.4104,0.2942,0.2579,0.4487,0.3682,0.3904,0.1573,0.2128,0.261,0.1914,0.1504,0.4487,0.1815,0.2849,0.0518,0.2128,0.3154,0.3904,0.1573,0.2128,0.3969,1.4043,0.0638,0.0],"best":29,"next":"5♣ 5♦","nextEv":0.6189,"why":"Four to a flush beats a low pair by a wide margin when the flush pays 7."},{"c":"Ah Ad Ac 5s 9d","evs":[0.2817,0.2416,0.2351,1.113,0.2416,1.113,1.113,16.2553,0.2485,0.1601,0.1601,1.0842,0.1601,1.0842,1.0842,5.8085,0.2463,0.1443,0.2155,1.0842,0.1443,1.0842,1.0842,5.8085,0.1533,0.0786,0.0786,1.0213,0.0786,1.0213,1.0213,2.0],"best":7,"next":"A♥ A♦ A♣ 5♠","nextEv":5.8085,"why":"Holding three aces beats three aces plus the 5 kicker."},{"c":"As Ks 2d 7c 9h","evs":[0.2705,0.4604,0.3902,0.5468,0.2603,0.3539,0.2721,0.2636,0.2446,0.277,0.2702,0.2636,0.138,0.161,0.161,0.1277,0.2432,0.277,0.286,0.2636,0.138,0.161,0.161,0.1277,0.1835,0.161,0.161,0.1277,0.0583,0.0638,0.0638,0.0],"best":3,"next":"A♠","nextEv":0.4604,"why":"Two suited high cards (AK suited) beat a lone ace."},{"c":"6d 7d Qc Qs 5d","evs":[0.2908,0.2326,0.2343,0.2443,0.3264,0.2085,0.2085,0.1212,0.3264,0.2085,0.2085,0.1212,1.3317,1.1896,1.1896,1.0426,0.2343,0.2443,0.2261,0.6364,0.2085,0.1212,0.1212,0.0426,0.2085,0.1212,0.1212,0.0426,1.1896,1.0426,1.0426,1.0],"best":12,"next":"6♦ 7♦ 5♦","nextEv":0.6364,"why":"Holding the pair of queens beats 3 to a straight flush."},{"c":"8s Ad Qd Js Kh","evs":[0.2383,0.2151,0.4424,0.2637,0.3677,0.2688,0.5266,0.2581,0.3762,0.3606,0.4067,0.2581,0.4236,0.3173,0.4052,0.1915,0.3752,0.2569,0.4067,0.2581,0.4118,0.2581,0.4052,0.1915,0.4118,0.2581,0.4052,0.1915,0.4644,0.1915,0.5957,0.0],"best":30,"next":"A♦ Q♦","nextEv":0.5266,"why":"Holding 4 to an inside straight (4 high cards) beats 2 to a royal flush (suited high cards)."},{"c":"Ah 7s Ts Qh 7c","evs":[0.2772,0.4681,0.1954,0.2578,0.2376,0.2893,0.2177,0.1545,0.3956,0.5431,0.2511,0.2599,0.3141,0.3228,0.1545,0.1277,0.2023,0.2578,0.6189,0.4487,0.1417,0.1545,0.4487,0.2128,0.2511,0.2599,0.4487,0.2128,0.1545,0.1277,0.2128,0.0],"best":18,"next":"A♥ Q♥","nextEv":0.5431,"why":"Holding the low pair (7s) beats 2 to a royal flush (suited high cards)."},{"c":"Qc 8c Kh 9c Js","evs":[0.2648,0.3784,0.2174,0.3243,0.3874,0.4184,0.2636,0.2609,0.2138,0.3356,0.2408,0.5301,0.2725,0.3053,0.1582,0.1277,0.3935,0.4273,0.2843,0.3053,0.4184,0.4672,0.2609,0.1915,0.2932,0.3497,0.2618,0.4681,0.3053,0.5319,0.1277,0.0],"best":29,"next":"Q♣ 8♣ 9♣","nextEv":0.5301,"why":"Holding 4 to an inside straight (3 high cards) beats 3 to a straight flush. This one is close."},{"c":"8s 8c Kd 7h Qd","evs":[0.2861,0.1986,0.1986,0.6189,0.3925,0.2511,0.2511,0.4487,0.2406,0.1732,0.1732,0.4487,0.2707,0.1545,0.1545,0.2128,0.3956,0.2669,0.2669,0.4487,0.5585,0.2599,0.2599,0.2128,0.2707,0.1545,0.1545,0.2128,0.2636,0.1277,0.1277,0.0],"best":3,"next":"K♦ Q♦","nextEv":0.5585,"why":"Holding the low pair (8s) beats 2 to a royal flush (suited high cards)."},{"c":"5d 9d Td 8d Jc","evs":[0.3006,0.2424,0.2316,0.1909,0.2371,0.179,0.2229,0.2942,0.2326,0.2091,0.2205,0.3895,0.2086,0.2942,0.5504,1.3404,0.4177,0.2769,0.3065,0.1637,0.3223,0.1637,0.3117,0.0638,0.2947,0.1637,0.2525,0.0638,0.2525,0.0638,0.7447,0.0],"best":15,"next":"9♦ 10♦ 8♦ J♣","nextEv":0.7447,"why":"Holding 4 to a flush beats 4 to an open-ended straight."},{"c":"5s 3d 5d 2d Kd","evs":[0.3014,0.2112,0.2587,0.1582,0.1961,0.6189,0.1969,0.4487,0.2559,0.1425,0.2386,0.1702,0.1787,0.4487,0.4755,0.2128,0.4033,0.2579,0.3154,0.1573,0.2942,0.4487,0.3904,0.2128,0.3154,0.1573,0.3969,0.0638,0.3904,0.2128,1.4043,0.0],"best":30,"next":"5♠ 5♦","nextEv":0.6189,"why":"Holding 4 to a flush beats the low pair (5s)."},{"c":"6h 6s Qs Jd Kd","evs":[0.268,0.1936,0.1872,0.6189,0.388,0.2442,0.3154,0.4487,0.3893,0.2442,0.2442,0.4487,0.4374,0.2572,0.2572,0.2128,0.3788,0.2442,0.2442,0.4487,0.4216,0.2572,0.2572,0.2128,0.5439,0.2572,0.2572,0.2128,0.482,0.1915,0.1915,0.0],"best":3,"next":"J♦ K♦","nextEv":0.5439,"why":"Holding the low pair (6s) beats 2 to a royal flush (suited high cards)."},{"c":"Jh 5d Th Jc 9h","evs":[0.2906,0.3072,0.2539,0.2085,0.228,0.3603,0.1388,0.1212,0.3234,1.3317,0.2085,1.1896,0.2598,1.1896,0.1212,1.0426,0.2296,0.2958,0.1545,0.1212,0.2324,0.6984,0.0592,0.0426,0.244,1.1896,0.1212,1.0426,0.2988,1.0426,0.0426,1.0],"best":9,"next":"J♥ 10♥ 9♥","nextEv":0.6984,"why":"Holding the pair of jacks beats 3 to a straight flush."},{"c":"Ac Jc 3h Kc 2c","evs":[0.2545,0.4329,0.3811,0.4526,0.2484,0.3433,0.2654,0.2609,0.3692,0.4526,0.464,1.3858,0.2654,0.2609,0.2609,0.1915,0.2278,0.3819,0.3017,0.494,0.2002,0.2174,0.1582,0.1277,0.3017,0.494,0.494,1.5319,0.1582,0.1277,0.1277,0.0],"best":27,"next":"A♣ J♣ K♣","nextEv":1.3858,"why":"Holding 4 to a flush beats 3 to a royal flush."},{"c":"Ah Kd 3c 3s 8h","evs":[0.2749,0.4616,0.4043,0.4272,0.1953,0.3131,0.2511,0.2599,0.1953,0.3131,0.2511,0.2599,0.9192,0.7724,0.4764,0.2128,0.2448,0.3487,0.2707,0.2636,0.1101,0.1545,0.1545,0.1277,0.1101,0.1545,0.1545,0.1277,0.4764,0.2128,0.2128,0.0],"best":12,"next":"A♥","nextEv":0.4616,"why":"Holding the low pair (3s) beats the ace alone."},{"c":"As Ad 3c 8h Jd","evs":[0.2612,0.3082,0.2973,2.0712,0.2571,0.239,0.239,1.8834,0.2401,0.2017,0.2017,1.2914,0.134,0.1184,0.1184,1.0426,0.3927,0.3584,0.4783,1.2914,0.2679,0.2239,0.2239,1.0426,0.2976,0.2239,0.2239,1.0426,0.1591,0.1064,0.1064,1.0],"best":3,"next":"A♠ A♦ 3♣","nextEv":1.8834,"why":"Holding the pair of aces beats the pair of aces plus a kicker. Even a 2, 3 or 4 kicker is not worth keeping with a pair of aces."},{"c":"Kd Jh Qh Ts Qd","evs":[0.2577,0.3673,0.3739,0.4052,0.2816,0.3536,0.4901,0.4154,0.2231,0.2712,0.2949,0.3182,0.2244,0.3099,0.3691,0.8511,0.2818,0.4759,0.3654,0.4154,1.3317,1.1896,1.1896,1.0426,0.2244,0.3099,0.3691,0.8511,1.1896,1.0426,1.0426,1.0],"best":20,"next":"K♦ J♥ Q♥ 10♠","nextEv":0.8511,"why":"Holding the pair of queens beats 4 to an open-ended straight."},{"c":"Kd Qd Jd Td 2s","evs":[0.2648,0.3673,0.3705,0.4517,0.3748,0.4517,0.4636,0.6855,0.212,0.3176,0.3294,0.5828,0.3476,0.5828,0.6781,19.8298,0.2562,0.2654,0.2654,0.2609,0.2654,0.2609,0.2609,0.1915,0.1313,0.1582,0.1582,0.1277,0.1582,0.1277,0.1277,0.0],"best":15,"next":"K♦ Q♦ J♦","nextEv":0.6855,"why":"Holding 4 to a royal flush beats 3 to a royal flush."},{"c":"Qs 8s Ks 5d 5c","evs":[0.2866,0.3921,0.2335,0.3407,0.3878,0.5391,0.3225,0.555,0.203,0.2511,0.1417,0.1545,0.2511,0.2599,0.1545,0.1277,0.203,0.2511,0.1417,0.1545,0.2511,0.2599,0.1545,0.1277,0.6189,0.4487,0.4487,0.2128,0.4487,0.2128,0.2128,0.0],"best":24,"next":"Q♠ 8♠ K♠","nextEv":0.555,"why":"Holding the low pair (5s) beats 3 to a flush."},{"c":"As 4c 3d 2h 9s","evs":[0.2834,0.4649,0.2705,0.3536,0.2645,0.3536,0.2224,0.2081,0.26,0.3536,0.2067,0.2081,0.2067,0.2081,0.1647,0.4043,0.2537,0.3549,0.1446,0.1637,0.1446,0.1637,0.0611,0.0638,0.1446,0.1637,0.0611,0.0638,0.0611,0.0638,0.0,0.0],"best":1,"next":"A♠ 4♣ 3♦ 2♥","nextEv":0.4043,"why":"Holding the ace alone beats 4 to an inside straight (1 high card)."},{"c":"6h 7c 8d 9s 9h","evs":[0.3217,0.2561,0.2594,0.1895,0.258,0.1737,0.1816,0.1822,0.2196,0.1415,0.1534,0.1434,0.1692,0.1434,0.2026,0.6809,0.2127,0.2176,0.1534,0.1434,0.1692,0.1434,0.2026,0.6809,0.6189,0.4487,0.4487,0.2128,0.4487,0.2128,0.2128,0.0],"best":15,"next":"9♠ 9♥","nextEv":0.6189,"why":"An open-ended straight draw beats a low pair. Either 9 works."},{"c":"5h 5c Jh Kd Qh","evs":[0.2685,0.1824,0.1936,0.6189,0.3844,0.296,0.2442,0.4487,0.3899,0.2442,0.2442,0.4487,0.4216,0.2572,0.2572,0.2128,0.3784,0.296,0.2442,0.4487,0.5427,0.5486,0.2572,0.2128,0.4216,0.2572,0.2572,0.2128,0.482,0.1915,0.1915,0.0],"best":3,"next":"5♥ J♥ Q♥","nextEv":0.5486,"why":"Holding the low pair (5s) beats 3 to a flush."},{"c":"3s 3h 3d 8c 8d","evs":[0.3285,0.2064,0.2064,0.3547,0.1999,0.3547,0.3547,9.3053,0.2353,0.0883,0.0883,0.2488,0.0883,0.2488,0.2488,3.9574,0.2289,0.0883,0.0883,0.2488,0.1595,0.2488,0.2488,3.9574,0.6313,0.3275,0.3275,1.5106,0.3275,1.5106,1.5106,9.0],"best":7,"next":"Stand pat","nextEv":9.0,"why":"Break a full house with three 2s, 3s or 4s. It's close (9.31 against 9.00), but drawing to the trips wins because of the kicker quad."},{"c":"7h 9c Ts Ks Qh","evs":[0.2821,0.2368,0.2374,0.1756,0.2294,0.1598,0.1805,0.1767,0.3878,0.2702,0.2791,0.161,0.4133,0.161,0.2054,0.0638,0.3959,0.3415,0.291,0.161,0.3028,0.161,0.2646,0.0638,0.4251,0.2636,0.308,0.1277,0.3673,0.1277,0.4681,0.0],"best":30,"next":"K♠ Q♥","nextEv":0.4251,"why":"Holding 4 to an inside straight (2 high cards) beats two unsuited high cards."},{"c":"Jd 8h As Th 9d","evs":[0.2727,0.3973,0.2314,0.288,0.4772,0.423,0.277,0.2636,0.232,0.3117,0.2442,0.2498,0.2889,0.3228,0.161,0.1277,0.2289,0.3783,0.1815,0.2498,0.277,0.2636,0.161,0.1277,0.1776,0.309,0.2063,0.7447,0.161,0.1277,0.0638,0.0],"best":27,"next":"A♠","nextEv":0.4772,"why":"Holding 4 to an open-ended straight beats the ace alone."},{"c":"9s 5h 5d Qs Ks","evs":[0.2866,0.2336,0.2044,0.1259,0.2044,0.1259,0.6189,0.4487,0.3911,0.3525,0.2511,0.1545,0.2511,0.1545,0.4487,0.2128,0.3868,0.3343,0.2511,0.1545,0.2511,0.1545,0.4487,0.2128,0.5327,0.6503,0.2599,0.1277,0.2599,0.1277,0.2128,0.0],"best":25,"next":"5♥ 5♦","nextEv":0.6189,"why":"Holding 3 to a straight flush beats the low pair (5s)."},{"c":"Qd Jd 8c Kd Js","evs":[0.2573,0.3658,0.283,0.4255,0.2257,0.2673,0.2224,0.2803,0.3636,0.4609,0.4113,1.5023,0.2594,0.259,0.2211,0.1702,0.299,0.3713,1.3317,1.1896,0.2224,0.2803,1.1896,1.0426,0.3595,0.445,1.1896,1.0426,0.2211,0.1702,1.0426,1.0],"best":11,"next":"J♦ J♠","nextEv":1.3317,"why":"Holding 3 to a royal flush beats the pair of jacks."},{"c":"Ks 8d 2d 8h Qs","evs":[0.2834,0.3924,0.1977,0.2511,0.2637,0.2725,0.1832,0.1545,0.2042,0.2511,0.6189,0.4487,0.1119,0.1545,0.4487,0.2128,0.3955,0.5585,0.2669,0.2599,0.2725,0.2636,0.1545,0.1277,0.2669,0.2599,0.4487,0.2128,0.1545,0.1277,0.2128,0.0],"best":10,"next":"K♠ Q♠","nextEv":0.5585,"why":"Holding the low pair (8s) beats 2 to a royal flush (suited high cards)."},{"c":"2s 2d 2c 2h As","evs":[0.3135,0.1637,0.1704,0.2081,0.1704,0.2081,0.2081,2.4468,0.1704,0.2081,0.2081,2.4468,0.2081,2.4468,2.4468,154.8936,0.4701,0.3799,0.3063,0.2081,0.3063,0.2081,0.2081,2.4468,0.3063,0.2081,0.2081,2.4468,0.2081,2.4468,2.4468,400.0],"best":31,"next":"2♠ 2♦ 2♣ 2♥","nextEv":154.8936,"why":"Holding the pat hand (pays 400) beats four 2s. Your kicker already earns the bonus."},{"c":"Td Qd 5s 9d Kd","evs":[0.2844,0.2229,0.3831,0.3391,0.2483,0.1361,0.2702,0.161,0.2242,0.2295,0.3272,0.5338,0.1519,0.0583,0.161,0.0638,0.3798,0.3272,0.4614,1.3302,0.2702,0.161,0.2636,0.1277,0.3154,0.4385,0.5412,2.6383,0.161,0.0638,0.1277,0.0],"best":27,"next":"10♦ Q♦ K♦","nextEv":1.3302,"why":"Holding 4 to a straight flush beats 3 to a royal flush."},{"c":"9d Ac Kc Td Qs","evs":[0.2564,0.2215,0.4539,0.2704,0.375,0.2725,0.5333,0.2609,0.2223,0.2626,0.2792,0.1582,0.2813,0.2026,0.3053,0.1277,0.3894,0.2843,0.4134,0.2609,0.4155,0.3053,0.408,0.1915,0.2932,0.2618,0.3053,0.1277,0.3497,0.4681,0.5319,0.0],"best":6,"next":"A♣ K♣ 10♦ Q♠","nextEv":0.5319,"why":"Holding 2 to a royal flush (suited high cards) beats 4 to an inside straight (3 high cards). This one is close."},{"c":"9c Tc Jc Qd 2h","evs":[0.2793,0.2269,0.2242,0.2357,0.3886,0.3516,0.4121,0.7086,0.4014,0.288,0.2998,0.2498,0.434,0.3525,0.4117,0.8085,0.2678,0.138,0.138,0.0583,0.2721,0.161,0.161,0.0638,0.2721,0.161,0.161,0.0638,0.2636,0.1277,0.1277,0.0],"best":15,"next":"9♣ 10♣ J♣","nextEv":0.7086,"why":"Holding 4 to an open-ended straight beats 3 to a straight flush."},{"c":"8c Ts Js 7s Qd","evs":[0.2819,0.2377,0.2233,0.1657,0.3888,0.288,0.417,0.2498,0.2294,0.1884,0.211,0.1619,0.3309,0.2054,0.5328,0.4043,0.4024,0.2791,0.3028,0.2054,0.4369,0.308,0.4265,0.4681,0.2702,0.161,0.161,0.0638,0.2636,0.1277,0.1277,0.0],"best":14,"next":"8♣ 10♠ J♠ Q♦","nextEv":0.4681,"why":"Holding 3 to a straight flush beats 4 to an inside straight (2 high cards)."},{"c":"Jh Ac 5s 3c 5c","evs":[0.275,0.4162,0.4595,0.4272,0.1997,0.2511,0.2697,0.2599,0.2489,0.2725,0.3982,0.2636,0.1553,0.1545,0.2137,0.1277,0.1878,0.2511,0.3215,0.2599,0.6189,0.4487,0.4487,0.2128,0.212,0.1545,0.5412,0.1277,0.4487,0.2128,0.2128,0.0],"best":20,"next":"A♣ 3♣ 5♣","nextEv":0.5412,"why":"Holding the low pair (5s) beats 3 to a straight flush."},{"c":"Qs Qh 8h Qc 2s","evs":[0.2881,0.2361,0.2359,1.113,0.2437,0.1601,0.2337,1.0842,0.2426,1.113,1.113,4.4699,0.1601,1.0842,1.0842,3.4681,0.2664,0.2174,0.1462,1.0842,0.1393,0.0786,0.0786,1.0213,0.1462,1.0842,1.0842,3.4681,0.0786,1.0213,1.0213,2.0],"best":11,"next":"Q♠ Q♥ 8♥ Q♣","nextEv":3.4681,"why":"Holding three queens beats three queens plus the 8 kicker."},{"c":"4d Ac Qd 3c 5d","evs":[0.2694,0.2481,0.4572,0.347,0.3972,0.3239,0.427,0.2636,0.2489,0.2118,0.4206,0.2054,0.2721,0.161,0.2636,0.1277,0.2269,0.2477,0.2859,0.2054,0.322,0.4524,0.2636,0.1277,0.1705,0.2211,0.2054,0.4043,0.161,0.0638,0.1277,0.0],"best":2,"next":"4♦ Q♦ 5♦","nextEv":0.4524,"why":"Holding the ace alone beats 3 to a flush. This one is close."},{"c":"Jh 7h Jd 9h Kh","evs":[0.2758,0.2928,0.2222,0.2498,0.3123,1.3317,0.2135,1.1896,0.2153,0.2798,0.2126,0.4468,0.2411,1.1896,0.1776,1.0426,0.3726,0.4552,0.3023,0.457,0.3703,1.1896,0.2239,1.0426,0.3102,0.5523,0.3922,1.4468,0.2831,1.0426,0.1064,1.0],"best":27,"next":"J♥ J♦","nextEv":1.3317,"why":"Holding 4 to a flush beats the pair of jacks."},{"c":"5h 6h 7h 8h 8c","evs":[0.325,0.2477,0.2439,0.2282,0.2424,0.21,0.2179,0.4514,0.2043,0.1778,0.1896,0.3765,0.2078,0.3765,0.4718,3.6809,0.2196,0.1415,0.1534,0.1434,0.1692,0.1434,0.2026,0.6809,0.6189,0.4487,0.4487,0.2128,0.4487,0.2128,0.2128,0.0],"best":15,"next":"5♥ 6♥ 7♥ 8♣","nextEv":0.6809,"why":"Holding 4 to a straight flush beats 4 to an open-ended straight."},{"c":"Td Jd Ac Kc 2s","evs":[0.2541,0.2213,0.3841,0.443,0.447,0.2792,0.4134,0.3053,0.3757,0.2843,0.4184,0.3645,0.5333,0.3053,0.408,0.5319,0.2487,0.1313,0.2654,0.1582,0.3472,0.1582,0.2609,0.1277,0.2654,0.1582,0.2609,0.1277,0.2609,0.1277,0.1915,0.0],"best":12,"next":"10♦ J♦ A♣ K♣","nextEv":0.5319,"why":"Holding 2 to a royal flush (suited high cards) beats 4 to an inside straight (3 high cards). This one is close."},{"c":"3s 3c 6s 3d 2c","evs":[0.3251,0.1904,0.1904,0.3508,0.2629,0.2106,0.1346,0.3071,0.1973,0.3508,0.3508,9.0028,0.1346,0.3071,0.3071,4.1064,0.274,0.1562,0.2322,0.3071,0.157,0.1064,0.1064,0.1702,0.1562,0.3071,0.3071,10.9149,0.1064,0.1702,0.1702,2.0],"best":27,"next":"3♠ 3♣ 3♦","nextEv":9.0028,"why":"Holding three 3s plus the 2 kicker beats three 3s. With three aces keep a 2, 3 or 4 kicker. With three 2s, 3s or 4s keep an A, 2, 3 or 4 kicker. The bonus quad pays 800 or 400."},{"c":"Qh Jh 9h 8c 7d","evs":[0.2824,0.3874,0.3899,0.5414,0.2237,0.3428,0.3541,0.7308,0.2366,0.2791,0.288,0.308,0.1776,0.2054,0.2498,0.4681,0.2399,0.2702,0.2791,0.2636,0.1687,0.161,0.2054,0.1277,0.1845,0.161,0.2054,0.1277,0.2211,0.0638,0.4043,0.0],"best":7,"next":"Q♥ J♥","nextEv":0.5414,"why":"Three to a straight flush with two high cards beats two suited high cards."},{"c":"Ts 5h 7h Th 2h","evs":[0.3191,0.2314,0.2523,0.1238,0.2494,0.1553,0.2409,0.0546,0.2165,0.6189,0.16,0.4487,0.1964,0.4487,0.2877,0.2128,0.2755,0.1256,0.2245,0.0546,0.1882,0.0546,0.2969,0.0,0.1619,0.4487,0.2877,0.2128,0.2877,0.2128,1.3404,0.0],"best":30,"next":"10♠ 10♥","nextEv":0.6189,"why":"Holding 4 to a flush beats the low pair (10s)."},{"c":"Th Jh Qd Ks 4c","evs":[0.2593,0.22,0.3828,0.4361,0.3898,0.2932,0.4273,0.4089,0.3864,0.2813,0.4155,0.3497,0.4155,0.3497,0.4524,0.8723,0.2681,0.1313,0.2654,0.1582,0.2654,0.1582,0.2609,0.1277,0.2654,0.1582,0.2609,0.1277,0.2609,0.1277,0.1915,0.0],"best":15,"next":"J♥ Q♦ K♠","nextEv":0.4524,"why":"Holding 4 to an open-ended straight beats three unsuited high cards."},{"c":"2c 7d 9h Js 4c","evs":[0.2911,0.2658,0.2527,0.1446,0.2527,0.1446,0.1862,0.0611,0.4226,0.2788,0.2887,0.1637,0.3203,0.1637,0.2229,0.0638,0.2749,0.2936,0.1762,0.0611,0.1446,0.0611,0.0611,0.0,0.2788,0.1637,0.1637,0.0638,0.1637,0.0638,0.0638,0.0],"best":8,"next":"9♥ J♠","nextEv":0.3203,"why":"With one high card and nothing else, hold that card alone. Don't add a low card to it."},{"c":"Ah Ac Kd Ks 7h","evs":[0.257,0.2966,0.3031,2.1125,0.2977,0.2959,0.2959,1.2636,0.2977,0.2959,0.2959,1.2636,1.3336,1.1619,1.1619,1.6809,0.2307,0.2686,0.1973,1.2914,0.1973,0.1832,0.1832,1.0426,0.1973,0.1832,0.1832,1.0426,1.1896,1.0426,1.0426,1.0],"best":3,"next":"K♦ K♠","nextEv":1.3336,"why":"Two pair with aces: keep only the aces. Drawing three cards gives you the chance at quad aces."},{"c":"Jd Qc 8h Ks Ts","evs":[0.2636,0.3926,0.3892,0.4244,0.2309,0.2843,0.2725,0.3053,0.3754,0.4155,0.4155,0.4524,0.2636,0.2609,0.2609,0.1915,0.2173,0.3021,0.2902,0.3941,0.166,0.2618,0.2026,0.4681,0.4036,0.3497,0.3497,0.8723,0.1582,0.1277,0.1277,0.0],"best":27,"next":"J♦ Q♣ 8♥ 10♠","nextEv":0.4681,"why":"Holding 4 to an open-ended straight beats 4 to an inside straight (2 high cards)."},{"c":"Ah Th Td 5s Qh","evs":[0.2779,0.4609,0.188,0.3215,0.204,0.2697,0.6189,0.4487,0.25,0.2932,0.1101,0.1545,0.1101,0.1545,0.4487,0.2128,0.3865,0.4711,0.3511,1.3404,0.2945,0.3191,0.4487,0.2128,0.2707,0.2636,0.1545,0.1277,0.1545,0.1277,0.2128,0.0],"best":19,"next":"10♥ 10♦","nextEv":0.6189,"why":"Holding 3 to a royal flush beats the low pair (10s)."},{"c":"6c 6s Ks 5s 8s","evs":[0.3066,0.2087,0.1931,0.6189,0.4036,0.2579,0.2942,0.4487,0.2354,0.1722,0.2133,0.4487,0.3136,0.1573,0.3904,0.2128,0.2385,0.1564,0.1951,0.4487,0.3136,0.1573,0.3904,0.2128,0.1954,0.1702,0.4755,0.2128,0.3969,0.0638,1.4043,0.0],"best":30,"next":"6♣ 6♠","nextEv":0.6189,"why":"Holding 4 to a flush beats the low pair (6s)."},{"c":"Qh Qd 5d 5h 3c","evs":[0.2917,0.3214,0.3214,1.3336,0.2003,0.1909,0.2622,1.1619,0.2003,0.2622,0.1909,1.1619,0.6231,0.3848,0.3848,1.6809,0.2731,0.2108,0.2108,1.1896,0.1619,0.1147,0.1147,1.0426,0.1619,0.1147,0.1147,1.0426,0.4496,0.1915,0.1915,1.0],"best":15,"next":"Q♥ Q♦","nextEv":1.3336,"why":"Holding two pair beats the pair of queens."},{"c":"Js Jd 8s 7s 6s","evs":[0.2921,0.3135,0.3285,1.3317,0.2258,0.2748,0.2361,1.1896,0.2272,0.2566,0.2204,1.1896,0.2184,0.4496,0.1804,1.0426,0.231,0.2448,0.2085,1.1896,0.2105,0.3543,0.1212,1.0426,0.2287,0.3543,0.1212,1.0426,0.5782,1.383,0.0426,1.0],"best":29,"next":"J♠ J♦","nextEv":1.3317,"why":"Holding 4 to a flush beats the pair of jacks."},{"c":"Ac Kd Qh Js 9c","evs":[0.2373,0.4468,0.3744,0.4067,0.3778,0.4067,0.4088,0.4052,0.3823,0.4067,0.4088,0.4052,0.4207,0.4052,0.4496,0.5957,0.2122,0.3349,0.2658,0.2581,0.2776,0.2581,0.3025,0.1915,0.2934,0.2581,0.3025,0.1915,0.3617,0.1915,0.5319,0.0],"best":15,"next":"K♦ Q♥ J♠ 9♣","nextEv":0.5319,"why":"AKQJ is a one-ended draw, but all four cards are high, so it beats KQJ9."},{"c":"Ad Td Jh Qs 7c","evs":[0.2541,0.4539,0.2185,0.3991,0.3936,0.4134,0.308,0.3053,0.3902,0.4134,0.2961,0.3053,0.4303,0.408,0.4237,0.5319,0.2336,0.2704,0.1571,0.1582,0.2754,0.2609,0.2174,0.1277,0.2636,0.2609,0.1582,0.1277,0.2609,0.1915,0.1277,0.0],"best":15,"next":"A♦","nextEv":0.4539,"why":"Holding 4 to an inside straight (3 high cards) beats the ace alone."},{"c":"Ts Qc 7s 9h Jh","evs":[0.2811,0.232,0.4016,0.2998,0.2355,0.2329,0.2702,0.161,0.2287,0.1746,0.288,0.2498,0.1726,0.1619,0.161,0.0638,0.3971,0.3087,0.434,0.4117,0.2791,0.2054,0.2636,0.1277,0.3753,0.2942,0.3525,0.8085,0.2054,0.4043,0.1277,0.0],"best":27,"next":"Q♣ J♥","nextEv":0.434,"why":"Holding 4 to an open-ended straight beats two unsuited high cards."},{"c":"Ah 3c Ad 6d Td","evs":[0.2802,0.3204,0.2658,0.2459,0.3048,2.0712,0.2459,1.8834,0.2388,0.2085,0.1722,0.1212,0.2603,1.2914,0.1212,1.0426,0.2386,0.2243,0.1406,0.1212,0.3248,1.2914,0.1212,1.0426,0.2088,0.1212,0.0592,0.0426,0.4126,1.0426,0.0426,1.0],"best":5,"next":"A♥ 3♣ A♦","nextEv":1.8834,"why":"Holding the pair of aces beats the pair of aces plus a kicker. Even a 2, 3 or 4 kicker is not worth keeping with a pair of aces."},{"c":"Jd Td 8s Ad 4d","evs":[0.2719,0.3874,0.2232,0.365,0.241,0.2939,0.1756,0.2794,0.4511,0.4593,0.3251,1.2858,0.277,0.2636,0.161,0.1277,0.2561,0.3084,0.1742,0.3941,0.1537,0.161,0.0583,0.0638,0.3925,0.4968,0.3941,1.4681,0.161,0.1277,0.0638,0.0],"best":27,"next":"J♦ 10♦ A♦","nextEv":1.2858,"why":"Holding 4 to a flush beats 3 to a royal flush."},{"c":"2d 5d Kd 3s 3d","evs":[0.3021,0.2541,0.2381,0.1973,0.4033,0.3154,0.3136,0.3969,0.2047,0.1622,0.1564,0.1702,0.2579,0.1573,0.1573,0.0638,0.1895,0.1985,0.1951,0.4755,0.2942,0.3904,0.3904,1.4043,0.9192,0.7724,0.4764,0.2128,0.4764,0.2128,0.2128,0.0],"best":23,"next":"3♠ 3♦","nextEv":0.9192,"why":"Holding 4 to a flush beats the low pair (3s)."},{"c":"Qs Jd Tc 9h 3c","evs":[0.2766,0.4014,0.4049,0.434,0.2342,0.2998,0.3117,0.4117,0.239,0.288,0.2998,0.3525,0.1815,0.2498,0.309,0.8085,0.2673,0.2721,0.2721,0.2636,0.2092,0.161,0.161,0.1277,0.138,0.161,0.161,0.1277,0.0583,0.0638,0.0638,0.0],"best":15,"next":"Q♠ J♦","nextEv":0.434,"why":"Holding 4 to an open-ended straight beats two unsuited high cards."},{"c":"4s 4d 4h 4c 9s","evs":[0.3304,0.1949,0.2014,0.2081,0.2014,0.2081,0.2081,2.4468,0.2014,0.2081,0.2081,2.4468,0.2081,2.4468,2.4468,161.7021,0.2775,0.1674,0.0962,0.2081,0.0962,0.2081,0.2081,2.4468,0.0962,0.2081,0.2081,2.4468,0.2081,2.4468,2.4468,80.0],"best":15,"next":"Stand pat","nextEv":80.0,"why":"Throw away a 9 kicker. Twelve cards (A, 2, 3) turn this 80 into 400."},{"c":"Qh Ah 7c Ad 3d","evs":[0.2625,0.3896,0.2973,0.4783,0.2415,0.266,0.2017,0.2239,0.3015,0.3584,2.0712,1.2914,0.2017,0.2239,1.2914,1.0426,0.249,0.2679,0.239,0.2239,0.1497,0.1591,0.1184,0.1064,0.3127,0.2239,1.8834,1.0426,0.1184,0.1064,1.0426,1.0],"best":10,"next":"A♥ A♦ 3♦","nextEv":1.8834,"why":"Holding the pair of aces beats the pair of aces plus a kicker. Even a 2, 3 or 4 kicker is not worth keeping with a pair of aces."},{"c":"7s Ts 9c Th 8c","evs":[0.3216,0.2561,0.2169,0.2176,0.2506,0.1737,0.1692,0.1434,0.2238,0.1415,0.6189,0.4487,0.1692,0.1434,0.4487,0.2128,0.2521,0.1895,0.1534,0.1434,0.2625,0.1822,0.2026,0.6809,0.1534,0.1434,0.4487,0.2128,0.2026,0.6809,0.2128,0.0],"best":23,"next":"10♠ 10♥","nextEv":0.6189,"why":"Holding 4 to an open-ended straight beats the low pair (10s). Equal holds: 7♠ 9♣ 10♥ 8♣."},{"c":"As Ad 7s 9s Ks","evs":[0.2676,0.2927,0.3116,2.1106,0.2237,0.2379,0.2017,1.2914,0.222,0.2379,0.2017,1.2914,0.2229,0.3515,0.1184,1.0426,0.3742,0.4434,0.3584,1.2914,0.3023,0.457,0.2239,1.0426,0.3205,0.457,0.2239,1.0426,0.3922,1.4468,0.1064,1.0],"best":3,"next":"A♠ 7♠ 9♠ K♠","nextEv":1.4468,"why":"A pair of aces beats four to a flush. Aces are worth a lot in this game."},{"c":"2s 2h 2d Ac Ad","evs":[0.2958,0.1714,0.1714,0.3547,0.1647,0.3547,0.3547,8.7132,0.323,0.1978,0.1978,0.2488,0.1978,0.2488,0.2488,10.766,0.3163,0.1978,0.1978,0.2488,0.2714,0.2488,0.2488,10.766,1.9973,1.8353,1.8353,1.5106,1.8353,1.5106,1.5106,9.0],"best":15,"next":"Stand pat","nextEv":9.0,"why":"Break the full house and keep one ace as the kicker. Either ace works."},{"c":"As 2s 3s 4s 5d","evs":[0.2878,0.4561,0.2437,0.3877,0.2469,0.3877,0.2377,0.4302,0.2514,0.3877,0.2377,0.4302,0.252,0.4302,0.408,2.4894,0.249,0.2903,0.1602,0.197,0.172,0.197,0.1388,0.3191,0.1878,0.197,0.1388,0.3191,0.198,0.3191,0.5957,4.0],"best":31,"next":"A♠ 2♠ 3♠ 4♠","nextEv":2.4894,"why":"Holding the pat straight beats 4 to a straight flush."},{"c":"Ah Kd 6s Jd 6d","evs":[0.26,0.4674,0.3746,0.4166,0.193,0.251,0.2442,0.2572,0.3865,0.4166,0.5285,0.4228,0.2442,0.2572,0.2572,0.1915,0.1818,0.251,0.296,0.2572,0.6189,0.4487,0.4487,0.2128,0.296,0.2572,0.5486,0.1915,0.4487,0.2128,0.2128,0.0],"best":20,"next":"K♦ J♦ 6♦","nextEv":0.5486,"why":"Holding the low pair (6s) beats 3 to a flush."},{"c":"Ah Kh Qh Jh 5h","evs":[0.2432,0.4305,0.3538,0.4309,0.3581,0.4309,0.436,0.5865,0.3641,0.4309,0.436,0.5865,0.4541,0.5865,0.6818,18.5745,0.2076,0.3061,0.2811,0.4394,0.2811,0.4394,0.4394,1.383,0.2811,0.4394,0.4394,1.383,0.4394,1.383,1.383,7.0],"best":15,"next":"Stand pat","nextEv":7.0,"why":"Break a made flush for four to a royal."},{"c":"2s 2c 5d 2h 4s","evs":[0.3253,0.1848,0.1917,0.3508,0.2666,0.1306,0.1306,0.3071,0.1917,0.3508,0.3508,9.0028,0.1306,0.3071,0.3071,4.1064,0.2827,0.2282,0.1522,0.3071,0.1925,0.1656,0.1656,0.1702,0.1522,0.3071,0.3071,10.9149,0.1656,0.1702,0.1702,2.0],"best":27,"next":"2♠ 2♣ 2♥","nextEv":9.0028,"why":"Holding three 2s plus the 4 kicker beats three 2s. With three aces keep a 2, 3 or 4 kicker. With three 2s, 3s or 4s keep an A, 2, 3 or 4 kicker. The bonus quad pays 800 or 400."},{"c":"Jd Tc Kc 7s Jc","evs":[0.2743,0.3112,0.2166,0.253,0.3752,0.3663,0.3336,0.3423,0.2387,0.2135,0.1558,0.1776,0.266,0.2239,0.1591,0.1064,0.295,1.3317,0.3096,1.1896,0.4181,1.1896,1.3996,1.0426,0.2135,1.1896,0.1776,1.0426,0.2239,1.0426,0.1064,1.0],"best":22,"next":"J♦ J♣","nextEv":1.3317,"why":"Holding 3 to a royal flush beats the pair of jacks."},{"c":"Kd Ks Qs Js 5c","evs":[0.2577,0.2911,0.2752,1.3317,0.3679,0.3595,0.4113,1.1896,0.3739,0.3595,0.4113,1.1896,0.4791,0.445,1.5023,1.0426,0.2322,0.1948,0.1948,1.1896,0.2594,0.2211,0.2211,1.0426,0.2594,0.2211,0.2211,1.0426,0.259,0.1702,0.1702,1.0],"best":14,"next":"K♦ K♠","nextEv":1.3317,"why":"Three to a royal flush beats a pair of kings. High pairs are weaker in TDB because two pair only pays 1."},{"c":"7s Kd Td Qh 9d","evs":[0.2828,0.2433,0.3831,0.2702,0.2241,0.1598,0.3914,0.161,0.4024,0.2702,0.4251,0.2636,0.3028,0.161,0.3673,0.1277,0.2254,0.1756,0.3309,0.161,0.2395,0.1767,0.5328,0.0638,0.291,0.161,0.308,0.1277,0.2646,0.0638,0.4681,0.0],"best":22,"next":"K♦ 10♦ Q♥ 9♦","nextEv":0.4681,"why":"Holding 3 to a straight flush beats 4 to an inside straight (2 high cards)."},{"c":"Ad Ah Ac As Kc","evs":[0.2765,0.1483,0.1483,1.0222,0.1374,1.0222,1.0222,2.4468,0.1483,1.0222,1.0222,2.4468,1.0222,2.4468,2.4468,323.4043,0.3824,0.2452,0.2452,1.0222,0.3651,1.0222,1.0222,2.4468,0.2452,1.0222,1.0222,2.4468,1.0222,2.4468,2.4468,160.0],"best":15,"next":"Stand pat","nextEv":160.0,"why":"Throw away a K kicker on four aces. Twelve cards (2, 3, 4) turn 160 into 800."},{"c":"Qh Qc 7d 7s 3h","evs":[0.2902,0.3214,0.3279,1.3336,0.2097,0.1909,0.1909,1.1619,0.2097,0.1909,0.1909,1.1619,0.6231,0.3848,0.3848,1.6809,0.2724,0.282,0.2108,1.1896,0.1304,0.1147,0.1147,1.0426,0.1304,0.1147,0.1147,1.0426,0.4496,0.1915,0.1915,1.0],"best":15,"next":"Q♥ Q♣","nextEv":1.3336,"why":"With no aces, keep two pair. Only aces are worth breaking two pair for."},{"c":"Js Ts 3s 7s 3h","evs":[0.3019,0.4035,0.2397,0.4263,0.197,0.2942,0.1532,0.3904,0.2415,0.3254,0.2097,0.4921,0.1714,0.3904,0.2849,1.4043,0.2117,0.2579,0.1169,0.1573,0.9389,0.4764,0.4764,0.2128,0.1327,0.1573,0.0518,0.0638,0.4764,0.2128,0.2128,0.0],"best":15,"next":"3♠ 3♥","nextEv":0.9389,"why":"Holding 4 to a flush beats the low pair (3s)."},{"c":"2h Qh As Ad 3c","evs":[0.2608,0.2388,0.3939,0.3391,0.3052,0.2351,0.3584,0.2239,0.3052,0.2351,0.3584,0.2239,2.0317,1.8834,1.2914,1.0426,0.2512,0.199,0.2679,0.1591,0.2351,0.1776,0.2239,0.1064,0.2351,0.1776,0.2239,0.1064,1.8834,1.0426,1.0426,1.0],"best":12,"next":"2♥ A♠ A♦","nextEv":1.8834,"why":"Holding the pair of aces beats the pair of aces plus a kicker. Even a 2, 3 or 4 kicker is not worth keeping with a pair of aces."},{"c":"3s 4d 5h 6c Kc","evs":[0.2928,0.2724,0.2759,0.2155,0.2479,0.1742,0.1861,0.2091,0.2439,0.1624,0.1742,0.1499,0.1882,0.1499,0.2091,0.6809,0.4096,0.2788,0.2788,0.1637,0.2769,0.1637,0.1637,0.0638,0.3481,0.1637,0.1637,0.0638,0.1637,0.0638,0.0638,0.0],"best":15,"next":"K♣","nextEv":0.4096,"why":"An open-ended straight draw beats a single high card, even with all low cards."},{"c":"2c Td Qc Jc Tc","evs":[0.2858,0.2557,0.2009,0.1119,0.3822,0.3088,0.2866,0.1545,0.3851,0.3088,0.3024,0.1545,0.4646,0.4968,0.4376,0.1277,0.1813,0.1482,0.6189,0.4487,0.3228,0.3876,0.4487,0.2128,0.341,0.3876,0.4487,0.2128,1.4727,1.4681,0.2128,0.0],"best":28,"next":"2♣ Q♣ J♣ 10♣","nextEv":1.4681,"why":"Holding 3 to a royal flush beats 4 to a flush. This one is close."}];
+
+const SUIT = { s: "♠", h: "♥", d: "♦", c: "♣" };
+const SUIT_NAME = { s: "spades", h: "hearts", d: "diamonds", c: "clubs" };
+const isRed = s => s === "h" || s === "d";
+const parse = str => str.split(" ").map(x => ({ r: x[0] === "T" ? "10" : x[0], s: x[1] }));
+HANDS.forEach(h => { h.cards = parse(h.c); h.max = Math.max(...h.evs); });
+
+function holdLabel(h, mask) {
+  const kept = h.cards.filter((_, i) => mask >> i & 1);
+  if (!kept.length) return "Nothing (draw five)";
+  if (kept.length === 5) return "All five (stand pat)";
+  return kept.map(k => `<span class="${isRed(k.s) ? "rd" : ""}">${k.r}${SUIT[k.s]}</span>`).join(" ");
+}
+
+const KEY = "tdb97-drill-v2";
+let state = { order: HANDS.map((_, i) => i), sel: {}, done: {} };
+try {
+  const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+  if (saved && Array.isArray(saved.order) && saved.order.length === HANDS.length) state = saved;
+} catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+const list = document.getElementById("deals");
+const filterEl = document.getElementById("filter");
+
+function isRight(hi) { const h = HANDS[hi]; return h.evs[state.done[hi]] >= h.max - 1e-9; }
+
+function rowHTML(hi, pos) {
+  const h = HANDS[hi];
+  const sel = state.sel[hi] || 0;
+  const done = hi in state.done;
+  const mask = done ? state.done[hi] : sel;
+  const slots = h.cards.map((k, i) => `
+    <button type="button" class="slot${h.best >> i & 1 ? " best" : ""}" data-i="${i}" aria-pressed="${!!(mask >> i & 1)}"
+      aria-label="${k.r} of ${SUIT_NAME[k.s]}" ${done ? "disabled" : ""}>
+      <span class="held">HELD</span>
+      <span class="card ${isRed(k.s) ? "red" : "black"}"><span class="r">${k.r}</span><span class="s">${SUIT[k.s]}</span></span>
+      <span class="mark">✓ BEST</span>
+    </button>`).join("");
+  let result = "";
+  if (done) {
+    const ok = isRight(hi), yours = h.evs[mask], lost = h.max - yours;
+    result = `
+      <div class="result">
+        <div class="verdict">${ok ? "Correct" : "Not the best hold"}${ok ? "" : `<small>costs ${lost.toFixed(4)} per coin</small>`}</div>
+        <div class="lines">
+          <div><span class="k">Your hold</span><span>${holdLabel(h, mask)} · EV ${yours.toFixed(4)}</span></div>
+          ${ok ? "" : `<div><span class="k">Best hold</span><span>${holdLabel(h, h.best)} · EV ${h.max.toFixed(4)}</span></div>`}
+          <div><span class="k">Next best</span><span>${h.next} · EV ${h.nextEv.toFixed(4)}</span></div>
+        </div>
+        <div class="why">${h.why}</div>
+        <button type="button" class="retry" data-retry>Try this hand again</button>
+      </div>`;
+  }
+  return `
+    <li class="deal${done ? " done " + (isRight(hi) ? "right" : "wrong") : ""}" data-h="${hi}">
+      <div class="num">${pos + 1}</div>
+      <div class="hand">${slots}</div>
+      <button type="button" class="answer" data-check>
+        <span class="cover"><b>Check my hold</b><span>${sel ? "Holding " + holdLabel(h, sel) : "Tap cards to hold them, or check now to draw five new cards"}</span></span>
+      </button>
+      ${result}
+    </li>`;
+}
+
+function render() {
+  const f = filterEl.value;
+  const rows = state.order.map((hi, pos) => ({ hi, pos })).filter(({ hi }) =>
+    f === "all" || (f === "todo" && !(hi in state.done)) || (f === "wrong" && hi in state.done && !isRight(hi)));
+  list.innerHTML = rows.length ? rows.map(r => rowHTML(r.hi, r.pos)).join("")
+    : `<li class="empty">${f === "wrong" ? "No missed hands yet." : "You've answered every hand."}</li>`;
+  updateScore();
+}
+
+function updateRow(hi) {
+  const li = list.querySelector(`.deal[data-h="${hi}"]`);
+  if (!li) return;
+  const pos = state.order.indexOf(hi);
+  li.outerHTML = rowHTML(hi, pos);
+  updateScore();
+}
+
+function updateScore() {
+  const done = Object.keys(state.done).map(Number);
+  const ok = done.filter(isRight).length;
+  const lost = done.reduce((a, hi) => a + (HANDS[hi].max - HANDS[hi].evs[state.done[hi]]), 0);
+  document.getElementById("sAns").textContent = `${done.length} / ${HANDS.length}`;
+  document.getElementById("sOk").textContent = ok;
+  document.getElementById("sBad").textContent = done.length - ok;
+  document.getElementById("sLost").textContent = lost.toFixed(3);
+}
+
+list.addEventListener("click", e => {
+  const li = e.target.closest(".deal");
+  if (!li) return;
+  const hi = Number(li.dataset.h);
+  const slot = e.target.closest(".slot");
+  if (slot && !slot.disabled) {
+    state.sel[hi] = (state.sel[hi] || 0) ^ (1 << Number(slot.dataset.i));
+    save(); updateRow(hi);
+    list.querySelector(`.deal[data-h="${hi}"] .slot[data-i="${slot.dataset.i}"]`)?.focus();
+    return;
+  }
+  if (e.target.closest("[data-check]")) {
+    state.done[hi] = state.sel[hi] || 0;
+    save(); updateRow(hi);
+    return;
+  }
+  if (e.target.closest("[data-retry]")) {
+    delete state.done[hi]; delete state.sel[hi];
+    save(); updateRow(hi);
+  }
+});
+filterEl.addEventListener("change", render);
+document.getElementById("shuffle").onclick = () => {
+  const o = state.order;
+  for (let i = o.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; }
+  save(); render();
+};
+let armed = false;
+const resetBtn = document.getElementById("reset");
+resetBtn.onclick = () => {
+  if (!armed) { armed = true; resetBtn.textContent = "Tap again to clear"; setTimeout(() => { armed = false; resetBtn.textContent = "Start over"; }, 3000); return; }
+  armed = false; resetBtn.textContent = "Start over";
+  state = { order: HANDS.map((_, i) => i), sel: {}, done: {} };
+  save(); render();
+};
+
+render();
+</script>
+</body>
+</html>
