@@ -757,7 +757,7 @@ resetBtn.onclick = () => {
   save(); render();
 };
 
-// One row per hand in every batch, in the order shown on the page.
+// One row per hand in the selected batch, in the order shown on the page.
 function holdText(h, mask) {
   const kept = h.cards.filter((_, i) => mask >> i & 1).map(k => k.r + SUIT[k.s]);
   if (!kept.length) return "Nothing (draw five)";
@@ -771,30 +771,29 @@ function csvCell(v) {
 function buildCsv() {
   const rows = [["Batch", "Hand #", "Cards", "Status", "Your hold", "Your EV", "Best hold", "Best EV",
                  "EV lost", "Next best", "Next best EV", "Explanation"]];
-  for (const b of BATCHES) {
-    const s = b === batch ? state : loadState(b);
-    s.order.forEach((hi, pos) => {
-      const h = b.hands[hi];
-      const answered = hi in s.done;
-      const mask = s.done[hi];
-      const right = answered && h.evs[mask] >= h.max - 1e-9;
-      rows.push([
-        b.label, pos + 1, h.cards.map(k => k.r + SUIT[k.s]).join(" "),
-        answered ? (right ? "Correct" : "Wrong") : "Not answered",
-        answered ? holdText(h, mask) : "", answered ? h.evs[mask].toFixed(4) : "",
-        holdText(h, h.best), h.max.toFixed(4),
-        answered ? (h.max - h.evs[mask]).toFixed(4) : "",
-        h.next, h.nextEv.toFixed(4), h.why,
-      ]);
-    });
-  }
+  state.order.forEach((hi, pos) => {
+    const h = batch.hands[hi];
+    const answered = hi in state.done;
+    const mask = state.done[hi];
+    const right = answered && h.evs[mask] >= h.max - 1e-9;
+    rows.push([
+      batch.label, pos + 1, h.cards.map(k => k.r + SUIT[k.s]).join(" "),
+      answered ? (right ? "Correct" : "Wrong") : "Not answered",
+      answered ? holdText(h, mask) : "", answered ? h.evs[mask].toFixed(4) : "",
+      holdText(h, h.best), h.max.toFixed(4),
+      answered ? (h.max - h.evs[mask]).toFixed(4) : "",
+      h.next, h.nextEv.toFixed(4), h.why,
+    ]);
+  });
   return "﻿" + rows.map(r => r.map(csvCell).join(",")).join("\r\n") + "\r\n";
 }
 document.getElementById("exportCsv").onclick = () => {
   const url = URL.createObjectURL(new Blob([buildCsv()], { type: "text/csv;charset=utf-8" }));
   const a = document.createElement("a");
   a.href = url;
-  a.download = `tdb-drill-answers-${new Date().toISOString().slice(0, 10)}.csv`;
+  const d = new Date(), pad = n => String(n).padStart(2, "0");
+  const today = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;  // local date, not UTC
+  a.download = `tdb-drill-batch-${batch.label.replace("Batch ", "").replace("/", "-")}-answers-${today}.csv`;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
